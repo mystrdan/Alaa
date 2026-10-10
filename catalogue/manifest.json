@@ -1,0 +1,13 @@
+{
+  "catalogueVersion": 1,
+  "schemaVersion": 1,
+  "status": "development",
+  "minimumAppVersion": "0.1.0",
+  "updatedAt": null,
+  "signature": null,
+  "files": [
+    {"path": "countries/GH/services.json", "sha256": null},
+    {"path": "countries/NG/services.json", "sha256": null}
+  ],
+  "notice": "Development scaffold only. Replace with signed, source-verified catalogue before release."
+}
