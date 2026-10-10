@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'data/seed_catalogue.dart';
 import 'models/ussd_entry.dart';
@@ -230,7 +232,31 @@ class ServiceDetailPage extends StatelessWidget {
         const SizedBox(height: 20),
         Card(child: Padding(padding: const EdgeInsets.all(18), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [const Text('What it does', style: TextStyle(fontWeight: FontWeight.w800)), const SizedBox(height: 8), Text(entry.description), const SizedBox(height: 18), const Text('Instructions', style: TextStyle(fontWeight: FontWeight.w800)), const SizedBox(height: 8), ...entry.instructions.asMap().entries.map((item) => Padding(padding: const EdgeInsets.only(bottom: 8), child: Text('${item.key + 1}. ${item.value}')))]))),
         const SizedBox(height: 14),
-        const Text('No verified code is available in this preview.', textAlign: TextAlign.center, style: TextStyle(color: Colors.black54)),
+        if (entry.dialString.trim().isNotEmpty && entry.status == VerificationStatus.verified)
+          FilledButton.icon(
+            onPressed: () => _launchUssd(context, entry.dialString),
+            icon: const Icon(Icons.dialpad_rounded),
+            label: const Text('Open USSD dialer'),
+          )
+        else
+          const FilledButton.icon(
+            onPressed: null,
+            icon: Icon(Icons.dialpad_rounded),
+            label: Text('USSD code not verified'),
+          ),
+        if (entry.dialString.trim().isNotEmpty) ...[
+          const SizedBox(height: 8),
+          OutlinedButton.icon(
+            onPressed: () async {
+              await Clipboard.setData(ClipboardData(text: entry.dialString));
+              if (context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Code copied to clipboard')));
+              }
+            },
+            icon: const Icon(Icons.copy_rounded),
+            label: const Text('Copy code'),
+          ),
+        ],
         const SizedBox(height: 14),
         const _DemoNotice(),
         const SizedBox(height: 12),
@@ -307,3 +333,19 @@ IconData _categoryIcon(String category) => switch (category) {
       'Customer care' => Icons.support_agent_rounded,
       _ => Icons.grid_view_rounded,
     };
+
+
+Future<void> _launchUssd(BuildContext context, String dialString) async {
+  // Launch the Android phone app; Alaa never reads the USSD session response.
+  try {
+    final uri = Uri(scheme: 'tel', path: dialString);
+    final launched = await launchUrl(uri, mode: LaunchMode.externalApplication);
+    if (!launched && context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Could not open the dialer. Try copying the code instead.')));
+    }
+  } catch (_) {
+    if (context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('This device could not open the dialer. Try copying the code instead.')));
+    }
+  }
+}
