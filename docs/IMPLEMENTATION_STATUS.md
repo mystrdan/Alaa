@@ -6,7 +6,8 @@
 - Ghana/Nigeria country selector and local intent/service search prototype.
 - USSD catalogue entry model with verification status and a safe, explicitly unverified demo seed.
 - Catalogue manifest, record schema, and empty country catalogue files.
-- Architecture and UX guidance, official-logo handling note, widget smoke test, and GitHub Actions analyze/test workflow.
+- Architecture and UX guidance, official-logo handling note, widget smoke test, local-preferences persistence tests, and GitHub Actions analyze/test workflow.
+- Public product landing page in `web/`, deployed to Vercel project `alaa` (project ID `prj_BK8MvRwCwCtKTgjXJz2CArByf8vm`); GitHub `main` is connected for automatic deployment.
 
 ## Not implemented yet
 - Generated Android platform project and device build.
