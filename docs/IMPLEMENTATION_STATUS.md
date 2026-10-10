@@ -10,8 +10,8 @@
 
 ## Not implemented yet
 - Generated Android platform project and device build.
-- SQLite persistence for catalogue, favourites, recents, and contribution queue.
-- Real USSD launch/copy integration.
+- Transactional SQLite persistence for the catalogue and recents (favourites and draft contributions currently use local preferences).
+- Physical-device verification of USSD launch/copy behavior across Android dialers and dual-SIM devices.
 - Country/network auto-detection and provider filters.
 - Signed catalogue update client and cryptographic key management.
 - Serverless GitHub Issue creation endpoint, rate limiting, and idempotent delivery.
@@ -19,4 +19,4 @@
 - Official logo file, app icon, splash screen, privacy policy, and release signing.
 
 ## Important
-This is a development scaffold, not a release-ready app. Demo entries are not working codes and must not be used for real transactions. No build/test result should be considered passing until the GitHub Actions workflow completes successfully and a physical Android device test is performed.
+This is a development scaffold, not a release-ready app. Demo entries are not working codes and must not be used for real transactions. No build/test result should be considered passing until the latest GitHub Actions workflow completes successfully and a physical Android device test is performed.
