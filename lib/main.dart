@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:share_plus/share_plus.dart';
 
 import 'data/seed_catalogue.dart';
 import 'data/local_preferences.dart';
@@ -263,7 +264,7 @@ class _AlaaShellState extends State<AlaaShell> {
   void _openMenu() => showModalBottomSheet<void>(context: context, showDragHandle: true, builder: (sheetContext) => SafeArea(child: Padding(padding: const EdgeInsets.all(20), child: Column(mainAxisSize: MainAxisSize.min, children: [
         ListTile(leading: const Icon(Icons.settings_outlined), title: const Text('Settings'), onTap: () { Navigator.pop(sheetContext); Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => SettingsPage(themeMode: widget.themeMode, onThemeChanged: widget.onThemeChanged, country: _country, onCountryChanged: _changeCountry))); }),
         ListTile(leading: const Icon(Icons.info_outline_rounded), title: const Text('About Alaa'), onTap: () { Navigator.pop(sheetContext); Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => const AboutPage())); }),
-        ListTile(leading: const Icon(Icons.share_outlined), title: const Text('Share Alaa'), onTap: () { Navigator.pop(sheetContext); ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Official app link will be configured before release.'))); }),
+        ListTile(leading: const Icon(Icons.share_outlined), title: const Text('Share Alaa'), subtitle: const Text('Share the project link'), onTap: () { Navigator.pop(sheetContext); Share.share('Alaa — an offline-first USSD assistant for Ghana and Nigeria. Explore the project: https://github.com/mystrdan/Alaa'); }),
       ]))));
 }
 
