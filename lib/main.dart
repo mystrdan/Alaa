@@ -158,7 +158,20 @@ class _AlaaShellState extends State<AlaaShell> {
       subtitle: Padding(padding: const EdgeInsets.only(top: 4), child: Text('${entry.description}\n${entry.countryName} · ${entry.provider}', maxLines: 3)),
       isThreeLine: true,
       trailing: IconButton(tooltip: isFavourite ? 'Remove favourite' : 'Add favourite', onPressed: () => setState(() { if (isFavourite) { _favourites.remove(entry.id); } else { _favourites.add(entry.id); } }), icon: Icon(isFavourite ? Icons.favorite_rounded : Icons.favorite_border_rounded, color: isFavourite ? Colors.redAccent : null)),
-      onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => ServiceDetailPage(entry: entry, onFavourite: () => setState(() { if (_favourites.contains(entry.id)) { _favourites.remove(entry.id); } else { _favourites.add(entry.id); } }))),),
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute<void>(
+          builder: (_) => ServiceDetailPage(
+            entry: entry,
+            onFavourite: () => setState(() {
+              if (_favourites.contains(entry.id)) {
+                _favourites.remove(entry.id);
+              } else {
+                _favourites.add(entry.id);
+              }
+            }),
+          ),
+        ));
+      },
     ));
   }
 
