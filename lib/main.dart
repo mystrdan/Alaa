@@ -289,7 +289,7 @@ class ServiceDetailPage extends StatelessWidget {
             label: const Text('Open USSD dialer'),
           )
         else
-          const FilledButton.icon(
+          FilledButton.icon(
             onPressed: null,
             icon: Icon(Icons.dialpad_rounded),
             label: Text('USSD code not verified'),
