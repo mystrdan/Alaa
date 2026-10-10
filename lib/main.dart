@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'data/seed_catalogue.dart';
+import 'data/local_preferences.dart';
 import 'models/ussd_entry.dart';
 
 void main() => runApp(const AlaaApp());
@@ -53,6 +54,53 @@ class _AlaaShellState extends State<AlaaShell> {
   String _query = '';
   final Set<String> _favourites = <String>{};
   final List<_Contribution> _contributions = <_Contribution>[];
+  final LocalPreferences _localPreferences = LocalPreferences();
+
+  @override
+  void initState() {
+    super.initState();
+    _restoreLocalState();
+  }
+
+  Future<void> _restoreLocalState() async {
+    try {
+      final country = await _localPreferences.readCountry();
+      final favourites = await _localPreferences.readFavourites();
+      final pending = await _localPreferences.readPendingContributions();
+      if (!mounted) return;
+      setState(() {
+        if (country != null) _country = country;
+        _favourites
+          ..clear()
+          ..addAll(favourites);
+        _contributions
+          ..clear()
+          ..addAll(pending.map(_Contribution.fromMap));
+      });
+    } catch (_) {
+      // Keep the app usable with defaults if local preferences cannot be read.
+    }
+  }
+
+  Future<void> _changeCountry(String country) async {
+    setState(() => _country = country);
+    await _localPreferences.saveCountry(country);
+  }
+
+  Future<void> _toggleFavourite(String id) async {
+    setState(() {
+      if (_favourites.contains(id)) {
+        _favourites.remove(id);
+      } else {
+        _favourites.add(id);
+      }
+    });
+    await _localPreferences.saveFavourites(_favourites);
+  }
+
+  Future<void> _saveContributions() => _localPreferences.savePendingContributions(
+        _contributions.map((item) => item.toMap()).toList(),
+      );
 
   List<UssdEntry> get _entries => seedCatalogue.where((entry) => entry.countryCode == _country && entry.matches(_query)).toList();
 
@@ -100,7 +148,7 @@ class _AlaaShellState extends State<AlaaShell> {
             ]),
           ),
           const SizedBox(height: 22),
-          Row(children: [const Expanded(child: Text('Your country', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800))), SegmentedButton<String>(segments: const [ButtonSegment(value: 'GH', label: Text('Ghana')), ButtonSegment(value: 'NG', label: Text('Nigeria'))], selected: {_country}, onSelectionChanged: (value) => setState(() => _country = value.first), showSelectedIcon: false)]),
+          Row(children: [const Expanded(child: Text('Your country', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800))), SegmentedButton<String>(segments: const [ButtonSegment(value: 'GH', label: Text('Ghana')), ButtonSegment(value: 'NG', label: Text('Nigeria'))], selected: {_country}, onSelectionChanged: (value) => _changeCountry(value.first), showSelectedIcon: false)]),
           const SizedBox(height: 22),
           Row(children: [const Expanded(child: Text('Services', style: TextStyle(fontSize: 19, fontWeight: FontWeight.w800))), Text('${_entries.length} found', style: Theme.of(context).textTheme.bodySmall)]),
           const SizedBox(height: 10),
@@ -159,7 +207,7 @@ class _AlaaShellState extends State<AlaaShell> {
       title: Text(entry.name, style: const TextStyle(fontWeight: FontWeight.w700)),
       subtitle: Padding(padding: const EdgeInsets.only(top: 4), child: Text('${entry.description}\n${entry.countryName} · ${entry.provider}', maxLines: 3)),
       isThreeLine: true,
-      trailing: IconButton(tooltip: isFavourite ? 'Remove favourite' : 'Add favourite', onPressed: () => setState(() { if (isFavourite) { _favourites.remove(entry.id); } else { _favourites.add(entry.id); } }), icon: Icon(isFavourite ? Icons.favorite_rounded : Icons.favorite_border_rounded, color: isFavourite ? Colors.redAccent : null)),
+      trailing: IconButton(tooltip: isFavourite ? 'Remove favourite' : 'Add favourite', onPressed: () => _toggleFavourite(entry.id), icon: Icon(isFavourite ? Icons.favorite_rounded : Icons.favorite_border_rounded, color: isFavourite ? Colors.redAccent : null)),
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute<void>(
           builder: (_) => ServiceDetailPage(
@@ -204,6 +252,7 @@ class _AlaaShellState extends State<AlaaShell> {
         SizedBox(width: double.infinity, child: FilledButton(onPressed: () {
           if (name.text.trim().isEmpty || description.text.trim().isEmpty) return;
           setState(() => _contributions.add(_Contribution(name: name.text.trim(), country: _country, code: code.text.trim(), provider: provider.text.trim(), description: description.text.trim())));
+          _saveContributions();
           Navigator.pop(sheetContext);
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Saved in this prototype. Automatic delivery is not connected yet.')));
         }, child: const Text('Save contribution'))),
@@ -212,7 +261,7 @@ class _AlaaShellState extends State<AlaaShell> {
   }
 
   void _openMenu() => showModalBottomSheet<void>(context: context, showDragHandle: true, builder: (sheetContext) => SafeArea(child: Padding(padding: const EdgeInsets.all(20), child: Column(mainAxisSize: MainAxisSize.min, children: [
-        ListTile(leading: const Icon(Icons.settings_outlined), title: const Text('Settings'), onTap: () { Navigator.pop(sheetContext); Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => SettingsPage(themeMode: widget.themeMode, onThemeChanged: widget.onThemeChanged, country: _country, onCountryChanged: (value) => setState(() => _country = value)))); }),
+        ListTile(leading: const Icon(Icons.settings_outlined), title: const Text('Settings'), onTap: () { Navigator.pop(sheetContext); Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => SettingsPage(themeMode: widget.themeMode, onThemeChanged: widget.onThemeChanged, country: _country, onCountryChanged: _changeCountry))); }),
         ListTile(leading: const Icon(Icons.info_outline_rounded), title: const Text('About Alaa'), onTap: () { Navigator.pop(sheetContext); Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => const AboutPage())); }),
         ListTile(leading: const Icon(Icons.share_outlined), title: const Text('Share Alaa'), onTap: () { Navigator.pop(sheetContext); ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Official app link will be configured before release.'))); }),
       ]))));
@@ -317,11 +366,28 @@ class _DemoNotice extends StatelessWidget {
 
 class _Contribution {
   const _Contribution({required this.name, required this.country, required this.code, required this.provider, required this.description});
+
   final String name;
   final String country;
   final String code;
   final String provider;
   final String description;
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+        'name': name,
+        'country': country,
+        'code': code,
+        'provider': provider,
+        'description': description,
+      };
+
+  factory _Contribution.fromMap(Map<String, dynamic> map) => _Contribution(
+        name: map['name'] as String? ?? 'Untitled contribution',
+        country: map['country'] as String? ?? 'GH',
+        code: map['code'] as String? ?? '',
+        provider: map['provider'] as String? ?? '',
+        description: map['description'] as String? ?? '',
+      );
 }
 
 IconData _categoryIcon(String category) => switch (category) {
