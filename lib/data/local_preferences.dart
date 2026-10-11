@@ -11,8 +11,13 @@ class LocalPreferences {
 
   Future<String?> readCountry() async {
     final prefs = await SharedPreferences.getInstance();
-    final value = prefs.getString(_countryKey);
-    return value == 'GH' || value == 'NG' ? value : null;
+    try {
+      final value = prefs.getString(_countryKey);
+      return value == 'GH' || value == 'NG' ? value : null;
+    } on TypeError {
+      // A stale or malformed preference must not prevent the app from opening.
+      return null;
+    }
   }
 
   Future<void> saveCountry(String countryCode) async {
@@ -23,7 +28,12 @@ class LocalPreferences {
 
   Future<Set<String>> readFavourites() async {
     final prefs = await SharedPreferences.getInstance();
-    return (prefs.getStringList(_favouritesKey) ?? const <String>[]).toSet();
+    try {
+      return (prefs.getStringList(_favouritesKey) ?? const <String>[]).toSet();
+    } on TypeError {
+      // Ignore values written by an older or incompatible preference format.
+      return <String>{};
+    }
   }
 
   Future<void> saveFavourites(Set<String> ids) async {
@@ -40,6 +50,8 @@ class LocalPreferences {
       if (decoded is! List) return <Map<String, dynamic>>[];
       return decoded.whereType<Map>().map((item) => Map<String, dynamic>.from(item)).toList();
     } on FormatException {
+      return <Map<String, dynamic>>[];
+    } on TypeError {
       return <Map<String, dynamic>>[];
     }
   }
