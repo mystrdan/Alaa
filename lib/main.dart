@@ -291,8 +291,8 @@ class ServiceDetailPage extends StatelessWidget {
         else
           FilledButton.icon(
             onPressed: null,
-            icon: Icon(Icons.dialpad_rounded),
-            label: Text('USSD code not verified'),
+            icon: const Icon(Icons.dialpad_rounded),
+            label: const Text('USSD code not verified'),
           ),
         if (entry.dialString.trim().isNotEmpty) ...[
           const SizedBox(height: 8),
