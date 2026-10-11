@@ -1,4 +1,5 @@
 import 'package:alaa/main.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -9,6 +10,7 @@ void main() {
     expect(find.text('Categories'), findsOneWidget);
     expect(find.text('Favourites'), findsOneWidget);
   });
+
   testWidgets('unverified demo services cannot launch a USSD session', (tester) async {
     await tester.pumpWidget(const AlaaApp());
     await tester.tap(find.text('Data bundles').first);
@@ -24,5 +26,4 @@ void main() {
     expect(dialButton.onPressed, isNull);
     expect(find.textContaining('Development preview'), findsOneWidget);
   });
-
 }
