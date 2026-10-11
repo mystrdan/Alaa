@@ -53,6 +53,8 @@ void main() {
 
     await tester.enterText(find.widgetWithText(TextField, 'Service name'), 'Test service');
     await tester.enterText(find.widgetWithText(TextField, 'What does it do?'), 'Test description');
+    await tester.ensureVisible(find.text('Save on this device'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Save on this device'));
     await tester.pumpAndSettle();
 
