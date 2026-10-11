@@ -1,8 +1,18 @@
 import 'package:alaa/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
+  setUp(() {
+    // Back local persistence with the in-memory mock store; without this the
+    // real preferences platform channel never answers in tests and awaited
+    // saves never complete.
+    SharedPreferences.setMockInitialValues(<String, Object>{});
+  });
+
   testWidgets('Alaa opens on the offline-first home screen', (tester) async {
     await tester.pumpWidget(const AlaaApp());
     expect(find.text('What do you need to do?'), findsOneWidget);
@@ -64,6 +74,10 @@ void main() {
 
     expect(find.text('Test service'), findsNothing);
     expect(find.text('No contributions yet'), findsOneWidget);
+    // Snackbars display sequentially: advance fake time past the earlier
+    // save confirmation so the delete confirmation is displayed.
+    await tester.pump(const Duration(seconds: 5));
+    await tester.pumpAndSettle();
     expect(find.text('Local draft deleted.'), findsOneWidget);
   });
 
