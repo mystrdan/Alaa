@@ -24,7 +24,7 @@ void main() {
   test('favourites persist as unique IDs', () async {
     final store = LocalPreferences();
 
-    await store.saveFavourites(<String>{'bundle-data', 'balance', 'bundle-data'});
+    await store.saveFavourites(<String>{'bundle-data', 'balance'});
 
     expect(await store.readFavourites(), <String>{'bundle-data', 'balance'});
   });
