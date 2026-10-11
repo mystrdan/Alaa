@@ -19,6 +19,12 @@ CATALOGUE = ROOT / "catalogue"
 COUNTRIES = {"GH", "NG"}
 STATUSES = {"draft", "verified", "stale", "disputed", "retired"}
 SERVICE_TYPES = {"ussd", "sms_short_code", "phone_number", "web_link"}
+CATEGORIES = {"Data & airtime", "Account & balance", "Mobile money",
+              "Banking", "SIM & network", "Customer care"}
+ENTRY_KEYS = {"id", "name", "description", "countryCode", "provider", "category",
+              "serviceType", "dialString", "instructions", "verificationStatus",
+              "networkScope", "costNote", "sourceUrl", "verifiedAt", "version"}
+ID_PATTERN = re.compile(r"^[a-z0-9][a-z0-9-]{2,63}$")
 REQUIRED = {"id", "name", "description", "countryCode", "provider", "category",
             "serviceType", "dialString", "instructions", "verificationStatus"}
 
@@ -34,17 +40,24 @@ def read_json(path: Path):
         raise CatalogueError(f"{path.relative_to(ROOT)}: cannot read valid JSON ({exc})") from exc
 
 
-def validate_entry(entry, expected_country, seen_ids):
+def validate_entry(entry, expected_country, seen_ids, today=None):
     if not isinstance(entry, dict):
         raise CatalogueError(f"{expected_country}: every entry must be an object")
     missing = REQUIRED - entry.keys()
     if missing:
         raise CatalogueError(f"entry missing required fields: {', '.join(sorted(missing))}")
+    unknown = entry.keys() - ENTRY_KEYS
+    if unknown:
+        raise CatalogueError(f"{entry.get('id', '<unknown>')}: unknown fields: {', '.join(sorted(unknown))}")
     for field in ("id", "name", "description", "provider", "category"):
         if not isinstance(entry[field], str) or not entry[field].strip():
             raise CatalogueError(f"{entry.get('id', '<unknown>')}: {field} must be a non-empty string")
+    if not ID_PATTERN.fullmatch(entry["id"]):
+        raise CatalogueError(f"{entry['id']}: id must match {ID_PATTERN.pattern}")
     if entry["countryCode"] != expected_country:
         raise CatalogueError(f"{entry['id']}: countryCode does not match {expected_country} file")
+    if entry["category"] not in CATEGORIES:
+        raise CatalogueError(f"{entry['id']}: unsupported category")
     if entry["serviceType"] not in SERVICE_TYPES:
         raise CatalogueError(f"{entry['id']}: unsupported serviceType")
     if entry["verificationStatus"] not in STATUSES:
@@ -58,19 +71,32 @@ def validate_entry(entry, expected_country, seen_ids):
     if entry["id"] in seen_ids:
         raise CatalogueError(f"duplicate entry id: {entry['id']}")
     seen_ids.add(entry["id"])
-    if entry["verificationStatus"] == "verified":
-        source = entry.get("sourceUrl")
-        verified_at = entry.get("verifiedAt")
-        if not isinstance(source, str) or urlparse(source).scheme != "https" or not urlparse(source).netloc:
-            raise CatalogueError(f"{entry['id']}: verified entries require an HTTPS sourceUrl")
+
+    source = entry.get("sourceUrl")
+    if source is not None and (not isinstance(source, str) or urlparse(source).scheme != "https" or not urlparse(source).netloc):
+        raise CatalogueError(f"{entry['id']}: sourceUrl must be an HTTPS URL when present")
+
+    today = today or date.today()
+    verified_at = entry.get("verifiedAt")
+    if verified_at is not None:
         if not isinstance(verified_at, str):
-            raise CatalogueError(f"{entry['id']}: verified entries require verifiedAt (YYYY-MM-DD)")
+            raise CatalogueError(f"{entry['id']}: verifiedAt must be YYYY-MM-DD")
         try:
-            date.fromisoformat(verified_at)
+            checked = date.fromisoformat(verified_at)
         except ValueError as exc:
             raise CatalogueError(f"{entry['id']}: verifiedAt must be YYYY-MM-DD") from exc
+        if checked > today:
+            raise CatalogueError(f"{entry['id']}: verifiedAt must not be in the future")
+
+    if entry["verificationStatus"] == "verified":
+        if source is None:
+            raise CatalogueError(f"{entry['id']}: verified entries require an HTTPS sourceUrl")
+        if verified_at is None:
+            raise CatalogueError(f"{entry['id']}: verified entries require verifiedAt (YYYY-MM-DD)")
         if not entry["dialString"].strip():
             raise CatalogueError(f"{entry['id']}: verified entries require a dialString")
+        if not entry["instructions"]:
+            raise CatalogueError(f"{entry['id']}: verified entries require at least one instruction")
 
 
 def validate_catalogue(release=False):

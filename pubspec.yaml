@@ -18,3 +18,5 @@ flutter:
   uses-material-design: true
   assets:
     - assets/branding/alaa-logo.png
+    - catalogue/countries/GH/services.json
+    - catalogue/countries/NG/services.json

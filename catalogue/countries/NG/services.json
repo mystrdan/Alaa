@@ -1,5 +1,122 @@
 {
   "countryCode": "NG",
-  "entries": [],
-  "notice": "No production entries yet. Add only source-checked codes and verification metadata."
+  "entries": [
+    {
+      "id": "ng-airtel-data-balance",
+      "name": "Check data balance",
+      "description": "Check your remaining Airtel Nigeria data balance; *323# also shows your data expiry date.",
+      "countryCode": "NG",
+      "provider": "Airtel",
+      "category": "Data & airtime",
+      "serviceType": "ussd",
+      "dialString": "*323#",
+      "networkScope": "Airtel Nigeria SIMs",
+      "instructions": [
+        "Dial *323#.",
+        "Your data balance (and expiry date) is displayed."
+      ],
+      "costNote": "Standard USSD session charges may apply.",
+      "sourceUrl": "https://www.airtel.com.ng/ng/personal/faq",
+      "verifiedAt": "2026-10-11",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "ng-airtel-data-bundles",
+      "name": "View data bundles",
+      "description": "View all data bundles available on the Airtel Nigeria network.",
+      "countryCode": "NG",
+      "provider": "Airtel",
+      "category": "Data & airtime",
+      "serviceType": "ussd",
+      "dialString": "*312#",
+      "networkScope": "Airtel Nigeria SIMs",
+      "instructions": [
+        "Dial *312#.",
+        "Follow the menu to view and buy a data bundle."
+      ],
+      "costNote": "Bundle prices vary by plan. Standard USSD session charges may apply.",
+      "sourceUrl": "https://www.airtel.com.ng/ng/personal/faq",
+      "verifiedAt": "2026-10-11",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "ng-airtel-borrow-airtime",
+      "name": "Borrow airtime",
+      "description": "Borrow airtime from Airtel Nigeria when you run out, repaid on your next recharge.",
+      "countryCode": "NG",
+      "provider": "Airtel",
+      "category": "Account & balance",
+      "serviceType": "ussd",
+      "dialString": "*303#",
+      "networkScope": "Eligible Airtel Nigeria SIMs only; eligibility is decided by Airtel",
+      "instructions": [
+        "Dial *303#.",
+        "Follow the menu options to select your preferred loan amount."
+      ],
+      "costNote": "Service fees apply and are shown during the session.",
+      "sourceUrl": "https://www.airtel.com.ng/ng/personal/faq",
+      "verifiedAt": "2026-10-11",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "ng-airtel-airtime-transfer",
+      "name": "Transfer airtime",
+      "description": "Transfer airtime to another Airtel Nigeria number.",
+      "countryCode": "NG",
+      "provider": "Airtel",
+      "category": "Account & balance",
+      "serviceType": "ussd",
+      "dialString": "*321#",
+      "networkScope": "Airtel Nigeria to Airtel Nigeria only",
+      "instructions": [
+        "Dial *321#.",
+        "Follow the menu to transfer airtime to another Airtel number."
+      ],
+      "costNote": "Transfer limits and fees are set by Airtel.",
+      "sourceUrl": "https://www.airtel.com.ng/ng/personal/faq",
+      "verifiedAt": "2026-10-11",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "ng-airtel-recharge-from-bank",
+      "name": "Recharge airtime or data from your bank",
+      "description": "Buy Airtel Nigeria airtime or data directly from a linked bank account or debit card.",
+      "countryCode": "NG",
+      "provider": "Airtel",
+      "category": "Data & airtime",
+      "serviceType": "ussd",
+      "dialString": "*444#",
+      "networkScope": "Airtel Nigeria lines linked to a bank account or with a debit card",
+      "instructions": [
+        "Dial *444# (or *444*AMOUNT# for quick recharge).",
+        "Select the service you want: recharge for self or buy data bundles.",
+        "Choose payment through your bank or a debit card."
+      ],
+      "costNote": "Airtel states *444# is free to use; bundle and airtime prices still apply.",
+      "sourceUrl": "https://www.airtel.com.ng/ng/personal/dial_444",
+      "verifiedAt": "2026-10-11",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "ng-airtel-tariff-plan",
+      "name": "Check my tariff plan",
+      "description": "See which Airtel Nigeria tariff plan your line is on.",
+      "countryCode": "NG",
+      "provider": "Airtel",
+      "category": "SIM & network",
+      "serviceType": "ussd",
+      "dialString": "*121#",
+      "networkScope": "Airtel Nigeria SIMs",
+      "instructions": [
+        "Dial *121#.",
+        "Select 'Manage my account'.",
+        "Select 'My tariff plan'."
+      ],
+      "costNote": "Standard USSD session charges may apply.",
+      "sourceUrl": "https://www.airtel.com.ng/ng/personal/faq",
+      "verifiedAt": "2026-10-11",
+      "verificationStatus": "verified"
+    }
+  ],
+  "notice": "Each verified entry records the operator page used for the last check. MTN Nigeria, Glo, and 9mobile are not yet covered: their official pages were unreachable during the last research pass. USSD menus can change by SIM, plan, device, or date; re-check with the operator if a code no longer matches."
 }

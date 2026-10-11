@@ -1,5 +1,74 @@
 {
   "countryCode": "GH",
-  "entries": [],
-  "notice": "No production entries yet. Add only source-checked codes and verification metadata."
+  "entries": [
+    {
+      "id": "gh-mtn-buy-data-bundles",
+      "name": "Buy data bundles",
+      "description": "Buy an MTN Ghana data bundle. Code unconfirmed: MTN Ghana's official help pages were unreachable (HTTP 403) during the last research pass, so this entry stays unverified.",
+      "countryCode": "GH",
+      "provider": "MTN",
+      "category": "Data & airtime",
+      "serviceType": "ussd",
+      "dialString": "*138#",
+      "networkScope": "MTN Ghana prepaid SIMs (scope unconfirmed)",
+      "instructions": [
+        "Do not rely on this code until it is verified against an operator source."
+      ],
+      "costNote": "Bundle prices vary by plan. Standard USSD session charges may apply.",
+      "verifiedAt": null,
+      "verificationStatus": "draft"
+    },
+    {
+      "id": "gh-mtn-check-data-balance",
+      "name": "Check data bundle balance",
+      "description": "Check your remaining MTN Ghana data bundle balance. Code unconfirmed: MTN Ghana's official help pages were unreachable (HTTP 403) during the last research pass, so this entry stays unverified.",
+      "countryCode": "GH",
+      "provider": "MTN",
+      "category": "Data & airtime",
+      "serviceType": "ussd",
+      "dialString": "*138#",
+      "networkScope": "MTN Ghana prepaid SIMs (scope unconfirmed)",
+      "instructions": [
+        "Do not rely on this code until it is verified against an operator source."
+      ],
+      "costNote": "Standard USSD session charges may apply.",
+      "verifiedAt": null,
+      "verificationStatus": "draft"
+    },
+    {
+      "id": "gh-mtn-check-my-number",
+      "name": "Check my MTN number",
+      "description": "Show your own MTN Ghana phone number on your screen. Code unconfirmed: MTN Ghana's official help pages were unreachable (HTTP 403) during the last research pass, so this entry stays unverified.",
+      "countryCode": "GH",
+      "provider": "MTN",
+      "category": "Account & balance",
+      "serviceType": "ussd",
+      "dialString": "*156#",
+      "networkScope": "MTN Ghana SIMs (scope unconfirmed)",
+      "instructions": [
+        "Do not rely on this code until it is verified against an operator source."
+      ],
+      "costNote": "Standard USSD session charges may apply.",
+      "verifiedAt": null,
+      "verificationStatus": "draft"
+    },
+    {
+      "id": "gh-mtn-borrow-airtime",
+      "name": "Borrow airtime (Xtra Time)",
+      "description": "Borrow airtime from MTN Ghana when you run out, repaid on your next recharge. Code unconfirmed: MTN Ghana's official help pages were unreachable (HTTP 403) during the last research pass, so this entry stays unverified.",
+      "countryCode": "GH",
+      "provider": "MTN",
+      "category": "Account & balance",
+      "serviceType": "ussd",
+      "dialString": "*506#",
+      "networkScope": "MTN Ghana SIMs (scope unconfirmed); eligibility would be decided by MTN",
+      "instructions": [
+        "Do not rely on this code until it is verified against an operator source."
+      ],
+      "costNote": "Borrowing fees, if any, are set by the operator.",
+      "verifiedAt": null,
+      "verificationStatus": "draft"
+    }
+  ],
+  "notice": "Each verified entry records the operator or operator help-desk page used for the last check. USSD menus can change by SIM, plan, device, or date; re-check with the operator if a code no longer matches."
 }
