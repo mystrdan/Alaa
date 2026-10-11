@@ -122,7 +122,11 @@ class _AlaaShellState extends State<AlaaShell> {
     return Scaffold(
       appBar: AppBar(
         titleSpacing: 20,
-        title: const Text('Alaa', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 25, letterSpacing: -1)),
+        title: Row(children: [
+          Image.asset('assets/branding/alaa-logo.png', height: 34, width: 34, fit: BoxFit.contain, excludeFromSemantics: true),
+          const SizedBox(width: 10),
+          const Text('Alaa', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 25, letterSpacing: -1)),
+        ]),
         actions: [IconButton(tooltip: 'Settings and About', onPressed: _openMenu, icon: const Icon(Icons.tune_rounded)), const SizedBox(width: 8)],
       ),
       body: SafeArea(child: IndexedStack(index: _tab, children: pages)),
@@ -361,6 +365,8 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(appBar: AppBar(title: const Text('About Alaa')), body: ListView(padding: const EdgeInsets.all(24), children: [
         const SizedBox(height: 18),
+        Image.asset('assets/branding/alaa-logo.png', height: 110, fit: BoxFit.contain, excludeFromSemantics: true),
+        const SizedBox(height: 12),
         const Text('Alaa', textAlign: TextAlign.center, style: TextStyle(fontSize: 34, fontWeight: FontWeight.w900, letterSpacing: -1.5)),
         const SizedBox(height: 10),
         const Text('Your offline-first USSD assistant', textAlign: TextAlign.center, style: TextStyle(fontSize: 16, color: Colors.black54)),
