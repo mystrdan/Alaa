@@ -44,4 +44,25 @@ void main() {
     expect(find.text('Report a broken code'), findsOneWidget);
   });
 
+  testWidgets('local contribution drafts can be deleted from the queue', (tester) async {
+    await tester.pumpWidget(const AlaaApp());
+    await tester.tap(find.text('Contribute').last);
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Suggest a USSD code'));
+    await tester.pumpAndSettle();
+
+    await tester.enterText(find.widgetWithText(TextField, 'Service name'), 'Test service');
+    await tester.enterText(find.widgetWithText(TextField, 'What does it do?'), 'Test description');
+    await tester.tap(find.text('Save on this device'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Test service'), findsOneWidget);
+    await tester.tap(find.byTooltip('Delete local draft'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Test service'), findsNothing);
+    expect(find.text('No contributions yet'), findsOneWidget);
+    expect(find.text('Local draft deleted.'), findsOneWidget);
+  });
+
 }
