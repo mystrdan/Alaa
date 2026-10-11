@@ -189,11 +189,11 @@ class _AlaaShellState extends State<AlaaShell> {
         const SizedBox(height: 8),
         const Text('Suggest a missing code or report one that may have changed.', style: TextStyle(color: Colors.black54)),
         const SizedBox(height: 18),
-        FilledButton.icon(onPressed: _newContribution, icon: const Icon(Icons.add_rounded), label: const Text('Suggest a USSD code')),
+        FilledButton.icon(onPressed: () => _newContribution(type: 'suggestion'), icon: const Icon(Icons.add_rounded), label: const Text('Suggest a USSD code')),
         const SizedBox(height: 10),
-        OutlinedButton.icon(onPressed: _newContribution, icon: const Icon(Icons.flag_outlined), label: const Text('Report a broken code')),
+        OutlinedButton.icon(onPressed: () => _newContribution(type: 'report'), icon: const Icon(Icons.flag_outlined), label: const Text('Report a broken code')),
         const SizedBox(height: 20),
-        if (_contributions.isEmpty) _empty('No contributions yet', 'Pending contributions will appear here.') else ..._contributions.map((item) => Card(child: ListTile(leading: const Icon(Icons.schedule_rounded), title: Text(item.name), subtitle: Text('${item.country} · local prototype queue'), trailing: const Chip(label: Text('Pending'))))),
+        if (_contributions.isEmpty) _empty('No contributions yet', 'Pending contributions will appear here.') else ..._contributions.map((item) => Card(child: ListTile(leading: const Icon(Icons.schedule_rounded), title: Text(item.name), subtitle: Text('${item.country} · local prototype queue'), trailing: Chip(label: Text(item.status[0].toUpperCase() + item.status.substring(1)))))),
         const SizedBox(height: 14),
         const _DemoNotice(),
         const SizedBox(height: 10),
@@ -222,7 +222,7 @@ class _AlaaShellState extends State<AlaaShell> {
 
   Widget _empty(String title, String body) => Padding(padding: const EdgeInsets.symmetric(vertical: 34), child: Column(children: [const Icon(Icons.search_off_rounded, size: 38, color: Colors.black38), const SizedBox(height: 12), Text(title, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16)), const SizedBox(height: 5), Text(body, textAlign: TextAlign.center, style: const TextStyle(color: Colors.black54))]));
 
-  void _newContribution() {
+  void _newContribution({String type = 'suggestion'}) {
     final name = TextEditingController();
     final code = TextEditingController();
     final provider = TextEditingController();
@@ -230,7 +230,7 @@ class _AlaaShellState extends State<AlaaShell> {
     showModalBottomSheet<void>(context: context, isScrollControlled: true, showDragHandle: true, builder: (sheetContext) => Padding(
       padding: EdgeInsets.fromLTRB(20, 4, 20, MediaQuery.of(sheetContext).viewInsets.bottom + 24),
       child: SingleChildScrollView(child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-        const Text('Suggest a code', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800)),
+        Text(type == 'report' ? 'Report a broken code' : 'Suggest a code', style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w800)),
         const SizedBox(height: 6),
         const Text('Prototype form only: local persistence and GitHub delivery are not connected yet.', style: TextStyle(color: Colors.black54)),
         const SizedBox(height: 16),
@@ -251,7 +251,7 @@ class _AlaaShellState extends State<AlaaShell> {
             ScaffoldMessenger.of(sheetContext).showSnackBar(const SnackBar(content: Text('Add a service name and explain what the code does.')));
             return;
           }
-          setState(() => _contributions.add(_Contribution(id: 'draft-${DateTime.now().microsecondsSinceEpoch}', type: 'suggestion', name: serviceName, country: _country, code: code.text.trim(), provider: provider.text.trim(), description: summary, createdAt: DateTime.now().toUtc().toIso8601String())));
+          setState(() => _contributions.add(_Contribution(id: 'draft-${DateTime.now().microsecondsSinceEpoch}', type: type, name: serviceName, country: _country, code: code.text.trim(), provider: provider.text.trim(), description: summary, createdAt: DateTime.now().toUtc().toIso8601String())));
           _saveContributions();
           Navigator.pop(sheetContext);
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Saved on this device. Automatic delivery is not connected yet.')));
