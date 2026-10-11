@@ -26,4 +26,22 @@ void main() {
     expect(dialButton.onPressed, isNull);
     expect(find.textContaining('Development preview'), findsOneWidget);
   });
+  testWidgets('report and suggestion actions open distinct contribution forms', (tester) async {
+    await tester.pumpWidget(const AlaaApp());
+    await tester.tap(find.text('Contribute').last);
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Report a broken code'));
+    await tester.pumpAndSettle();
+    expect(find.text('Report a broken code'), findsNWidgets(2));
+    expect(find.text('Suggest a code'), findsNothing);
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Suggest a USSD code'));
+    await tester.pumpAndSettle();
+    expect(find.text('Suggest a code'), findsOneWidget);
+    expect(find.text('Report a broken code'), findsOneWidget);
+  });
+
 }
