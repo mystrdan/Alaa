@@ -213,13 +213,7 @@ class _AlaaShellState extends State<AlaaShell> {
         Navigator.of(context).push(MaterialPageRoute<void>(
           builder: (_) => ServiceDetailPage(
             entry: entry,
-            onFavourite: () => setState(() {
-              if (_favourites.contains(entry.id)) {
-                _favourites.remove(entry.id);
-              } else {
-                _favourites.add(entry.id);
-              }
-            }),
+            onFavourite: () => _toggleFavourite(entry.id),
           ),
         ));
       },
