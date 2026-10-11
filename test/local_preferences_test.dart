@@ -78,4 +78,29 @@ void main() {
       <Map<String, dynamic>>[<String, dynamic>{'id': 'draft-1'}],
     );
   });
+
+  test('wrong stored preference types safely fall back to defaults', () async {
+    SharedPreferences.setMockInitialValues(<String, Object>{
+      'preferred_country': 42,
+      'favourite_entry_ids': 'not-a-list',
+    });
+
+    final store = LocalPreferences();
+    expect(await store.readCountry(), isNull);
+    expect(await store.readFavourites(), isEmpty);
+  });
+
+  test('malformed contribution items with invalid map types are ignored safely', () async {
+    SharedPreferences.setMockInitialValues(<String, Object>{
+      'pending_contributions_v1': '[{"valid":"draft"}, {"nested":[1,2]}]',
+    });
+
+    expect(
+      await LocalPreferences().readPendingContributions(),
+      <Map<String, dynamic>>[
+        <String, dynamic>{'valid': 'draft'},
+        <String, dynamic>{'nested': <dynamic>[1, 2]},
+      ],
+    );
+  });
 }
