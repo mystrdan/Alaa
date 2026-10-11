@@ -251,7 +251,7 @@ class _AlaaShellState extends State<AlaaShell> {
             ScaffoldMessenger.of(sheetContext).showSnackBar(const SnackBar(content: Text('Add a service name and explain what the code does.')));
             return;
           }
-          setState(() => _contributions.add(_Contribution(name: serviceName, country: _country, code: code.text.trim(), provider: provider.text.trim(), description: summary)));
+          setState(() => _contributions.add(_Contribution(id: 'draft-${DateTime.now().microsecondsSinceEpoch}', type: 'suggestion', name: serviceName, country: _country, code: code.text.trim(), provider: provider.text.trim(), description: summary, createdAt: DateTime.now().toUtc().toIso8601String())));
           _saveContributions();
           Navigator.pop(sheetContext);
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Saved on this device. Automatic delivery is not connected yet.')));
@@ -372,28 +372,52 @@ class _DemoNotice extends StatelessWidget {
 }
 
 class _Contribution {
-  const _Contribution({required this.name, required this.country, required this.code, required this.provider, required this.description});
+  const _Contribution({
+    required this.id,
+    required this.type,
+    required this.name,
+    required this.country,
+    required this.code,
+    required this.provider,
+    required this.description,
+    this.status = 'pending',
+    this.createdAt,
+  });
 
+  final String id;
+  final String type;
   final String name;
   final String country;
   final String code;
   final String provider;
   final String description;
+  final String status;
+  final String? createdAt;
 
   Map<String, dynamic> toMap() => <String, dynamic>{
+        'id': id,
+        'type': type,
         'name': name,
         'country': country,
         'code': code,
         'provider': provider,
         'description': description,
+        'status': status,
+        'createdAt': createdAt,
       };
 
   factory _Contribution.fromMap(Map<String, dynamic> map) => _Contribution(
+        id: map['id'] is String && (map['id'] as String).isNotEmpty
+            ? map['id'] as String
+            : 'legacy-${map['name'] ?? 'draft'}',
+        type: map['type'] == 'report' ? 'report' : 'suggestion',
         name: map['name'] as String? ?? 'Untitled contribution',
-        country: map['country'] as String? ?? 'GH',
+        country: map['country'] == 'NG' ? 'NG' : 'GH',
         code: map['code'] as String? ?? '',
         provider: map['provider'] as String? ?? '',
         description: map['description'] as String? ?? '',
+        status: map['status'] is String ? map['status'] as String : 'pending',
+        createdAt: map['createdAt'] as String?,
       );
 }
 
