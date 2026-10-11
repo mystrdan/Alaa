@@ -193,7 +193,7 @@ class _AlaaShellState extends State<AlaaShell> {
         const SizedBox(height: 10),
         OutlinedButton.icon(onPressed: () => _newContribution(type: 'report'), icon: const Icon(Icons.flag_outlined), label: const Text('Report a broken code')),
         const SizedBox(height: 20),
-        if (_contributions.isEmpty) _empty('No contributions yet', 'Pending contributions will appear here.') else ..._contributions.map((item) => Card(child: ListTile(leading: const Icon(Icons.schedule_rounded), title: Text(item.name), subtitle: Text('${item.country} · local prototype queue'), trailing: Chip(label: Text(item.status[0].toUpperCase() + item.status.substring(1)))))),
+        if (_contributions.isEmpty) _empty('No contributions yet', 'Pending contributions will appear here.') else ..._contributions.map((item) => Card(child: ListTile(leading: const Icon(Icons.schedule_rounded), title: Text(item.name), subtitle: Text('${item.type == 'report' ? 'Report' : 'Suggestion'} · ${item.country} · local prototype queue'), trailing: Chip(label: Text(_statusLabel(item.status)))))),
         const SizedBox(height: 14),
         const _DemoNotice(),
         const SizedBox(height: 10),
@@ -406,19 +406,33 @@ class _Contribution {
         'createdAt': createdAt,
       };
 
-  factory _Contribution.fromMap(Map<String, dynamic> map) => _Contribution(
-        id: map['id'] is String && (map['id'] as String).isNotEmpty
-            ? map['id'] as String
-            : 'legacy-${map['name'] ?? 'draft'}',
-        type: map['type'] == 'report' ? 'report' : 'suggestion',
-        name: map['name'] as String? ?? 'Untitled contribution',
-        country: map['country'] == 'NG' ? 'NG' : 'GH',
-        code: map['code'] as String? ?? '',
-        provider: map['provider'] as String? ?? '',
-        description: map['description'] as String? ?? '',
-        status: map['status'] is String ? map['status'] as String : 'pending',
-        createdAt: map['createdAt'] as String?,
-      );
+  factory _Contribution.fromMap(Map<String, dynamic> map) {
+    String stringValue(String key, [String fallback = '']) {
+      final value = map[key];
+      return value is String ? value : fallback;
+    }
+
+    final name = stringValue('name', 'Untitled contribution');
+    final storedId = stringValue('id');
+    final storedStatus = stringValue('status');
+    const allowedStatuses = {'pending', 'sending', 'delivered', 'failed'};
+    return _Contribution(
+      id: storedId.isNotEmpty ? storedId : 'legacy-$name',
+      type: stringValue('type') == 'report' ? 'report' : 'suggestion',
+      name: name,
+      country: stringValue('country') == 'NG' ? 'NG' : 'GH',
+      code: stringValue('code'),
+      provider: stringValue('provider'),
+      description: stringValue('description'),
+      status: allowedStatuses.contains(storedStatus) ? storedStatus : 'pending',
+      createdAt: map['createdAt'] is String ? map['createdAt'] as String : null,
+    );
+  }
+}
+
+String _statusLabel(String status) {
+  if (status.isEmpty) return 'Pending';
+  return '${status[0].toUpperCase()}${status.substring(1)}';
 }
 
 IconData _categoryIcon(String category) => switch (category) {
