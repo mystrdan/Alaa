@@ -51,4 +51,31 @@ void main() {
 
     expect(await LocalPreferences().readPendingContributions(), isEmpty);
   });
+
+  test('unsupported stored country falls back to automatic selection', () async {
+    SharedPreferences.setMockInitialValues(<String, Object>{
+      'preferred_country': 'US',
+    });
+
+    expect(await LocalPreferences().readCountry(), isNull);
+  });
+
+  test('non-list contribution payload safely returns an empty list', () async {
+    SharedPreferences.setMockInitialValues(<String, Object>{
+      'pending_contributions_v1': '{"unexpected":"object"}',
+    });
+
+    expect(await LocalPreferences().readPendingContributions(), isEmpty);
+  });
+
+  test('contribution payload ignores non-object list items', () async {
+    SharedPreferences.setMockInitialValues(<String, Object>{
+      'pending_contributions_v1': '[{"id":"draft-1"},null,"invalid",3]',
+    });
+
+    expect(
+      await LocalPreferences().readPendingContributions(),
+      <Map<String, dynamic>>[<String, dynamic>{'id': 'draft-1'}],
+    );
+  });
 }
