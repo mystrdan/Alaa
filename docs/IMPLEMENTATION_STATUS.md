@@ -9,6 +9,8 @@
 - Architecture and UX guidance, official-logo handling note, widget smoke test, local-preferences persistence tests, and GitHub Actions analyze/test workflow.
 - CI now generates Android platform files in its runner, builds a debug APK after analysis/tests pass, and uploads the APK as a 14-day workflow artifact.
 - Contribution-delivery contract documented, including server-side secret handling, validation, durable rate limiting, idempotency, and review requirements.
+- Local contribution drafts now retain stable IDs, type, UTC creation time, and status; malformed optional fields are normalized during recovery so one wrongly typed field does not crash draft parsing.
+- Contribution queue distinguishes reports from suggestions, with widget coverage for opening the respective forms.
 - Public product landing page in `web/`, deployed to Vercel project `alaa` (project ID `prj_BK8MvRwCwCtKTgjXJz2CArByf8vm`); GitHub `main` is connected for automatic deployment.
 
 ## Not implemented yet
