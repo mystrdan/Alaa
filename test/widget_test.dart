@@ -35,7 +35,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Report a broken code'), findsNWidgets(2));
     expect(find.text('Suggest a code'), findsNothing);
-    await tester.pageBack();
+    Navigator.of(tester.element(find.text('Report a broken code').last)).pop();
     await tester.pumpAndSettle();
 
     await tester.tap(find.text('Suggest a USSD code'));
