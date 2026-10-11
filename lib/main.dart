@@ -234,23 +234,28 @@ class _AlaaShellState extends State<AlaaShell> {
         const SizedBox(height: 6),
         const Text('Prototype form only: local persistence and GitHub delivery are not connected yet.', style: TextStyle(color: Colors.black54)),
         const SizedBox(height: 16),
-        TextField(controller: name, decoration: const InputDecoration(labelText: 'Service name')),
+        TextField(controller: name, maxLength: 100, textCapitalization: TextCapitalization.sentences, decoration: const InputDecoration(labelText: 'Service name')),
         const SizedBox(height: 10),
-        TextField(controller: code, decoration: const InputDecoration(labelText: 'USSD code (if known)')),
+        TextField(controller: code, maxLength: 32, keyboardType: TextInputType.phone, decoration: const InputDecoration(labelText: 'USSD code (if known)')),
         const SizedBox(height: 10),
-        TextField(controller: provider, decoration: const InputDecoration(labelText: 'Network / provider')),
+        TextField(controller: provider, maxLength: 80, textCapitalization: TextCapitalization.words, decoration: const InputDecoration(labelText: 'Network / provider')),
         const SizedBox(height: 10),
-        TextField(controller: description, maxLines: 3, decoration: const InputDecoration(labelText: 'What does it do?')),
+        TextField(controller: description, maxLength: 500, maxLines: 3, textCapitalization: TextCapitalization.sentences, decoration: const InputDecoration(labelText: 'What does it do?')),
         const SizedBox(height: 12),
         const Text('Do not include personal information. Submissions sent to GitHub may be public.', style: TextStyle(fontSize: 12, color: Colors.black54)),
         const SizedBox(height: 16),
         SizedBox(width: double.infinity, child: FilledButton(onPressed: () {
-          if (name.text.trim().isEmpty || description.text.trim().isEmpty) return;
-          setState(() => _contributions.add(_Contribution(name: name.text.trim(), country: _country, code: code.text.trim(), provider: provider.text.trim(), description: description.text.trim())));
+          final serviceName = name.text.trim();
+          final summary = description.text.trim();
+          if (serviceName.isEmpty || summary.isEmpty) {
+            ScaffoldMessenger.of(sheetContext).showSnackBar(const SnackBar(content: Text('Add a service name and explain what the code does.')));
+            return;
+          }
+          setState(() => _contributions.add(_Contribution(name: serviceName, country: _country, code: code.text.trim(), provider: provider.text.trim(), description: summary)));
           _saveContributions();
           Navigator.pop(sheetContext);
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Saved in this prototype. Automatic delivery is not connected yet.')));
-        }, child: const Text('Save contribution'))),
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Saved on this device. Automatic delivery is not connected yet.')));
+        }, child: const Text('Save on this device'))),
       ])),
     ));
   }
