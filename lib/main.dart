@@ -103,6 +103,17 @@ class _AlaaShellState extends State<AlaaShell> {
         _contributions.map((item) => item.toMap()).toList(),
       );
 
+  Future<void> _removeContribution(String id) async {
+    if (!mounted) return;
+    setState(() => _contributions.removeWhere((item) => item.id == id));
+    await _saveContributions();
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Local draft deleted.')),
+      );
+    }
+  }
+
   List<UssdEntry> get _entries => seedCatalogue.where((entry) => entry.countryCode == _country && entry.matches(_query)).toList();
 
   @override
@@ -193,7 +204,7 @@ class _AlaaShellState extends State<AlaaShell> {
         const SizedBox(height: 10),
         OutlinedButton.icon(onPressed: () => _newContribution(type: 'report'), icon: const Icon(Icons.flag_outlined), label: const Text('Report a broken code')),
         const SizedBox(height: 20),
-        if (_contributions.isEmpty) _empty('No contributions yet', 'Pending contributions will appear here.') else ..._contributions.map((item) => Card(child: ListTile(leading: const Icon(Icons.schedule_rounded), title: Text(item.name), subtitle: Text('${item.type == 'report' ? 'Report' : 'Suggestion'} · ${item.country} · local prototype queue'), trailing: Chip(label: Text(_statusLabel(item.status)))))),
+        if (_contributions.isEmpty) _empty('No contributions yet', 'Pending contributions will appear here.') else ..._contributions.map((item) => Card(child: ListTile(leading: const Icon(Icons.schedule_rounded), title: Text(item.name), subtitle: Text('${item.type == 'report' ? 'Report' : 'Suggestion'} · ${item.country} · local prototype queue'), trailing: Row(mainAxisSize: MainAxisSize.min, children: [Chip(label: Text(_statusLabel(item.status))), IconButton(tooltip: 'Delete local draft', onPressed: () => _removeContribution(item.id), icon: const Icon(Icons.delete_outline_rounded))])))),
         const SizedBox(height: 14),
         const _DemoNotice(),
         const SizedBox(height: 10),
