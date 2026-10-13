@@ -2,73 +2,592 @@
   "countryCode": "GH",
   "entries": [
     {
-      "id": "gh-mtn-buy-data-bundles",
-      "name": "Buy data bundles",
-      "description": "Buy an MTN Ghana data bundle. Code unconfirmed: MTN Ghana's official help pages were unreachable (HTTP 403) during the last research pass, so this entry stays unverified.",
+      "id": "gh-mtn-balance-menu",
+      "name": "MTN balance menu",
+      "description": "Open the MTN Ghana balance menu for airtime, data and bundle balances. Widely published across operator and regulator consumer pages; the MTN help-centre itself was unreachable at last check, so this stays corroborated rather than verified.",
       "countryCode": "GH",
       "provider": "MTN",
-      "category": "Data & airtime",
+      "category": "Telecom",
       "serviceType": "ussd",
-      "dialString": "*138#",
-      "networkScope": "MTN Ghana prepaid SIMs (scope unconfirmed)",
+      "serviceStatus": "active",
+      "dialString": "*124#",
       "instructions": [
-        "Do not rely on this code until it is verified against an operator source."
+        "Dial *124#.",
+        "Choose the balance to view from the menu."
       ],
+      "verificationStatus": "corroborated",
+      "subcategory": "Balance enquiry",
+      "networkScope": "MTN Ghana SIMs",
+      "costNote": "Standard USSD session charges may apply.",
+      "tags": [
+        "balance",
+        "check balance",
+        "airtime",
+        "data"
+      ],
+      "sourceUrl": "https://nca.org.gh/consumer-watch/",
+      "sourceTitle": "NCA Consumer Watch",
+      "sourcePublisher": "National Communications Authority Ghana",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "gh-mtn-data-bundles",
+      "name": "Buy MTN data bundles",
+      "description": "Buy an MTN Ghana data bundle from the data menu. Widely published code; confirm the bundle menu if options change by plan or date.",
+      "countryCode": "GH",
+      "provider": "MTN",
+      "category": "Telecom",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*138#",
+      "instructions": [
+        "Dial *138#.",
+        "Choose a bundle and confirm the purchase."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "Data bundles",
+      "networkScope": "MTN Ghana prepaid SIMs",
       "costNote": "Bundle prices vary by plan. Standard USSD session charges may apply.",
-      "verifiedAt": null,
-      "verificationStatus": "draft"
-    },
-    {
-      "id": "gh-mtn-check-data-balance",
-      "name": "Check data bundle balance",
-      "description": "Check your remaining MTN Ghana data bundle balance. Code unconfirmed: MTN Ghana's official help pages were unreachable (HTTP 403) during the last research pass, so this entry stays unverified.",
-      "countryCode": "GH",
-      "provider": "MTN",
-      "category": "Data & airtime",
-      "serviceType": "ussd",
-      "dialString": "*138#",
-      "networkScope": "MTN Ghana prepaid SIMs (scope unconfirmed)",
-      "instructions": [
-        "Do not rely on this code until it is verified against an operator source."
+      "tags": [
+        "data",
+        "buy data",
+        "bundle",
+        "internet"
       ],
-      "costNote": "Standard USSD session charges may apply.",
-      "verifiedAt": null,
-      "verificationStatus": "draft"
+      "sourceUrl": "https://nca.org.gh/consumer-watch/",
+      "sourceTitle": "NCA Consumer Watch",
+      "sourcePublisher": "National Communications Authority Ghana",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
     },
     {
-      "id": "gh-mtn-check-my-number",
+      "id": "gh-mtn-my-number",
       "name": "Check my MTN number",
-      "description": "Show your own MTN Ghana phone number on your screen. Code unconfirmed: MTN Ghana's official help pages were unreachable (HTTP 403) during the last research pass, so this entry stays unverified.",
+      "description": "Display your own MTN Ghana phone number on screen. Widely published code; kept corroborated because the operator help-centre was unreachable at last check.",
       "countryCode": "GH",
       "provider": "MTN",
-      "category": "Account & balance",
+      "category": "Telecom",
       "serviceType": "ussd",
+      "serviceStatus": "active",
       "dialString": "*156#",
-      "networkScope": "MTN Ghana SIMs (scope unconfirmed)",
       "instructions": [
-        "Do not rely on this code until it is verified against an operator source."
+        "Dial *156#.",
+        "Your number is shown on screen."
       ],
+      "verificationStatus": "corroborated",
+      "subcategory": "SIM services",
+      "networkScope": "MTN Ghana SIMs",
       "costNote": "Standard USSD session charges may apply.",
-      "verifiedAt": null,
-      "verificationStatus": "draft"
+      "tags": [
+        "my number",
+        "check number",
+        "sim"
+      ],
+      "sourceUrl": "https://nca.org.gh/consumer-watch/",
+      "sourceTitle": "NCA Consumer Watch",
+      "sourcePublisher": "National Communications Authority Ghana",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
     },
     {
-      "id": "gh-mtn-borrow-airtime",
-      "name": "Borrow airtime (Xtra Time)",
-      "description": "Borrow airtime from MTN Ghana when you run out, repaid on your next recharge. Code unconfirmed: MTN Ghana's official help pages were unreachable (HTTP 403) during the last research pass, so this entry stays unverified.",
+      "id": "gh-mtn-xtratime",
+      "name": "Borrow airtime (XtraTime)",
+      "description": "Borrow airtime from MTN Ghana when you run out, repaid on your next recharge. Eligibility and fees are decided by MTN; widely published code kept corroborated pending an operator-page check.",
       "countryCode": "GH",
       "provider": "MTN",
-      "category": "Account & balance",
+      "category": "Telecom",
       "serviceType": "ussd",
+      "serviceStatus": "active",
       "dialString": "*506#",
-      "networkScope": "MTN Ghana SIMs (scope unconfirmed); eligibility would be decided by MTN",
       "instructions": [
-        "Do not rely on this code until it is verified against an operator source."
+        "Dial *506#.",
+        "Follow the menu to choose an amount and confirm."
       ],
+      "verificationStatus": "corroborated",
+      "subcategory": "Airtime advance",
+      "networkScope": "MTN Ghana SIMs",
+      "eligibility": "Eligible MTN Ghana lines only; decided by MTN",
       "costNote": "Borrowing fees, if any, are set by the operator.",
-      "verifiedAt": null,
-      "verificationStatus": "draft"
+      "securityWarning": "This creates a debt on your line repaid from your next recharge.",
+      "tags": [
+        "borrow",
+        "airtime",
+        "xtratime",
+        "loan"
+      ],
+      "sourceUrl": "https://nca.org.gh/consumer-watch/",
+      "sourceTitle": "NCA Consumer Watch",
+      "sourcePublisher": "National Communications Authority Ghana",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "gh-mtn-momo-menu",
+      "name": "MTN Mobile Money (MoMo)",
+      "description": "Open the MTN Mobile Money menu for balance, transfers, withdrawals, and bill payments. Widely published code; kept corroborated pending an operator-page check.",
+      "countryCode": "GH",
+      "provider": "MTN",
+      "category": "Finance and Payments",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*170#",
+      "instructions": [
+        "Dial *170#.",
+        "Follow the menu: send money, withdraw, pay bills, check balance."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "Mobile money",
+      "networkScope": "MTN Mobile Money users in Ghana",
+      "eligibility": "Registered MTN MoMo wallet holders",
+      "costNote": "Transaction fees apply per MoMo tariff.",
+      "securityWarning": "This starts financial transactions. Never share your MoMo PIN or one-time codes with anyone.",
+      "tags": [
+        "momo",
+        "mobile money",
+        "transfer",
+        "send money",
+        "balance"
+      ],
+      "sourceUrl": "https://www.mtn.com.gh/",
+      "sourceTitle": "MTN Ghana",
+      "sourcePublisher": "MTN Ghana",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "gh-telecel-balance",
+      "name": "Check Telecel balance",
+      "description": "Check your Telecel Ghana airtime and bundle balance. Widely published code; kept corroborated pending an operator-page check.",
+      "countryCode": "GH",
+      "provider": "Telecel",
+      "category": "Telecom",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*124#",
+      "instructions": [
+        "Dial *124#.",
+        "Your balance is shown on screen."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "Balance enquiry",
+      "networkScope": "Telecel Ghana SIMs",
+      "costNote": "Standard USSD session charges may apply.",
+      "tags": [
+        "balance",
+        "check balance",
+        "airtime"
+      ],
+      "sourceUrl": "https://www.telecel.com.gh/",
+      "sourceTitle": "Telecel Ghana",
+      "sourcePublisher": "Telecel Ghana",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "gh-telecel-data",
+      "name": "Buy Telecel data",
+      "description": "Buy a Telecel Ghana data bundle from the data menu. Widely published code; kept corroborated pending an operator-page check.",
+      "countryCode": "GH",
+      "provider": "Telecel",
+      "category": "Telecom",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*404#",
+      "instructions": [
+        "Dial *404#.",
+        "Choose a bundle and confirm the purchase."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "Data bundles",
+      "networkScope": "Telecel Ghana prepaid SIMs",
+      "costNote": "Bundle prices vary by plan. Standard USSD session charges may apply.",
+      "tags": [
+        "data",
+        "buy data",
+        "bundle",
+        "internet"
+      ],
+      "sourceUrl": "https://www.telecel.com.gh/",
+      "sourceTitle": "Telecel Ghana",
+      "sourcePublisher": "Telecel Ghana",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "gh-telecel-my-number",
+      "name": "Check my Telecel number",
+      "description": "Display your own Telecel Ghana phone number on screen. Widely published code; kept corroborated pending an operator-page check.",
+      "countryCode": "GH",
+      "provider": "Telecel",
+      "category": "Telecom",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*120#",
+      "instructions": [
+        "Dial *120#.",
+        "Your number is shown on screen."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "SIM services",
+      "networkScope": "Telecel Ghana SIMs",
+      "costNote": "Standard USSD session charges may apply.",
+      "tags": [
+        "my number",
+        "check number",
+        "sim"
+      ],
+      "sourceUrl": "https://www.telecel.com.gh/",
+      "sourceTitle": "Telecel Ghana",
+      "sourcePublisher": "Telecel Ghana",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "gh-telecel-credit-transfer",
+      "name": "Telecel credit transfer",
+      "description": "Send airtime credit to another Telecel Ghana number. Widely published code; kept corroborated pending an operator-page check.",
+      "countryCode": "GH",
+      "provider": "Telecel",
+      "category": "Telecom",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*110#",
+      "instructions": [
+        "Dial *110#.",
+        "Follow the menu to enter the number and amount."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "Airtime transfer",
+      "networkScope": "Telecel Ghana to Telecel Ghana only",
+      "costNote": "Transfer limits and fees are set by Telecel.",
+      "securityWarning": "Double-check the recipient number before confirming.",
+      "tags": [
+        "transfer",
+        "airtime",
+        "credit"
+      ],
+      "sourceUrl": "https://www.telecel.com.gh/",
+      "sourceTitle": "Telecel Ghana",
+      "sourcePublisher": "Telecel Ghana",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "gh-at-balance",
+      "name": "Check AirtelTigo balance",
+      "description": "Check your AirtelTigo Ghana airtime balance. Widely published code; kept corroborated pending an operator-page check.",
+      "countryCode": "GH",
+      "provider": "AirtelTigo",
+      "category": "Telecom",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*124#",
+      "instructions": [
+        "Dial *124#.",
+        "Your balance is shown on screen."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "Balance enquiry",
+      "networkScope": "AirtelTigo Ghana SIMs",
+      "costNote": "Standard USSD session charges may apply.",
+      "tags": [
+        "balance",
+        "check balance",
+        "airtime"
+      ],
+      "sourceUrl": "https://www.airteltigo.com.gh/",
+      "sourceTitle": "AirtelTigo Ghana",
+      "sourcePublisher": "AirtelTigo",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "gh-at-data",
+      "name": "Buy AirtelTigo data",
+      "description": "Buy an AirtelTigo Ghana data bundle from the data menu. Widely published code; kept corroborated pending an operator-page check.",
+      "countryCode": "GH",
+      "provider": "AirtelTigo",
+      "category": "Telecom",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*111#",
+      "instructions": [
+        "Dial *111#.",
+        "Choose a bundle and confirm the purchase."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "Data bundles",
+      "networkScope": "AirtelTigo Ghana prepaid SIMs",
+      "costNote": "Bundle prices vary by plan. Standard USSD session charges may apply.",
+      "tags": [
+        "data",
+        "buy data",
+        "bundle",
+        "internet"
+      ],
+      "sourceUrl": "https://www.airteltigo.com.gh/",
+      "sourceTitle": "AirtelTigo Ghana",
+      "sourcePublisher": "AirtelTigo",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "gh-at-my-number",
+      "name": "Check my AirtelTigo number",
+      "description": "Display your own AirtelTigo Ghana phone number on screen. Widely published code; kept corroborated pending an operator-page check.",
+      "countryCode": "GH",
+      "provider": "AirtelTigo",
+      "category": "Telecom",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*100#",
+      "instructions": [
+        "Dial *100#.",
+        "Your number is shown on screen."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "SIM services",
+      "networkScope": "AirtelTigo Ghana SIMs",
+      "costNote": "Standard USSD session charges may apply.",
+      "tags": [
+        "my number",
+        "check number",
+        "sim"
+      ],
+      "sourceUrl": "https://www.airteltigo.com.gh/",
+      "sourceTitle": "AirtelTigo Ghana",
+      "sourcePublisher": "AirtelTigo",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "gh-nhis-renew",
+      "name": "NHIS membership renewal and validity",
+      "description": "Renew NHIS membership or check validity from any phone network in Ghana. Confirmed on the official NHIA page: Option 1 checks validity, Option 2 renews; the page notes renewal works from any network.",
+      "countryCode": "GH",
+      "provider": "National Health Insurance Authority",
+      "category": "Health",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*929#",
+      "instructions": [
+        "Dial *929#.",
+        "Choose 1 to check validity or 2 to renew, then follow the prompts."
+      ],
+      "verificationStatus": "verified",
+      "subcategory": "Health insurance",
+      "networkScope": "Any phone network in Ghana",
+      "eligibility": "NHIS members and households renewing membership",
+      "costNote": "Renewal premiums apply; shown during the session.",
+      "securityWarning": "Do not share MoMo PINs or one-time codes while paying.",
+      "tags": [
+        "nhis",
+        "health",
+        "insurance",
+        "renew",
+        "validity"
+      ],
+      "sourceUrl": "https://nhis.gov.gh/929",
+      "sourceTitle": "NHIS short code *929#",
+      "sourcePublisher": "National Health Insurance Authority",
+      "lastCheckedAt": "2026-10-11",
+      "verifiedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "gh-ecg-prepaid",
+      "name": "ECG prepaid meter top-up",
+      "description": "Buy ECG prepaid electricity credit and load the token on your meter. Widely published service menu; kept corroborated pending an ECG-page check.",
+      "countryCode": "GH",
+      "provider": "Electricity Company of Ghana",
+      "category": "Utilities",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*226#",
+      "instructions": [
+        "Dial *226#.",
+        "Choose prepaid top-up, enter your meter number, amount, and confirm."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "Electricity",
+      "networkScope": "ECG prepaid customers",
+      "eligibility": "ECG prepaid meter holders",
+      "costNote": "Vend amounts plus any service charge shown during the session.",
+      "securityWarning": "Only use your own meter number; tokens cannot be transferred.",
+      "tags": [
+        "ecg",
+        "electricity",
+        "prepaid",
+        "meter",
+        "token"
+      ],
+      "sourceUrl": "https://www.ecg.com.gh/",
+      "sourceTitle": "ECG",
+      "sourcePublisher": "Electricity Company of Ghana",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "gh-ecg-postpaid",
+      "name": "ECG postpaid bill enquiry",
+      "description": "Check an ECG postpaid electricity bill from the service menu. Widely published menu; kept corroborated pending an ECG-page check.",
+      "countryCode": "GH",
+      "provider": "Electricity Company of Ghana",
+      "category": "Utilities",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*226#",
+      "instructions": [
+        "Dial *226#.",
+        "Choose postpaid/bill enquiry and follow the prompts."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "Electricity",
+      "networkScope": "ECG postpaid customers",
+      "costNote": "Bill amounts as issued by ECG.",
+      "tags": [
+        "ecg",
+        "electricity",
+        "postpaid",
+        "bill"
+      ],
+      "sourceUrl": "https://www.ecg.com.gh/",
+      "sourceTitle": "ECG",
+      "sourcePublisher": "Electricity Company of Ghana",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "gh-gra-services",
+      "name": "GRA tax services",
+      "description": "Reach Ghana Revenue Authority self-service options (TIN, filing help, taxpayer info) from the published short code menu. Kept corroborated pending a GRA-page check.",
+      "countryCode": "GH",
+      "provider": "Ghana Revenue Authority",
+      "category": "Government",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*222#",
+      "instructions": [
+        "Dial *222#.",
+        "Choose the tax service you need from the menu."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "Tax",
+      "networkScope": "Ghana taxpayers",
+      "costNote": "Standard USSD session charges may apply.",
+      "securityWarning": "Never share passwords or one-time codes with anyone.",
+      "tags": [
+        "tax",
+        "gra",
+        "tin",
+        "government"
+      ],
+      "sourceUrl": "https://gra.gov.gh/",
+      "sourceTitle": "GRA",
+      "sourcePublisher": "Ghana Revenue Authority",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "gh-gtb-737",
+      "name": "GTBank mobile banking (*737#)",
+      "description": "GTBank Ghana mobile banking: transfers, airtime top-up, balance checks, and bill payments. Widely published bank code; kept corroborated pending a bank-page check.",
+      "countryCode": "GH",
+      "provider": "Guaranty Trust Bank Ghana",
+      "category": "Finance and Payments",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*737#",
+      "instructions": [
+        "Dial *737#.",
+        "Follow the menu for transfers, airtime, balance, or bills."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "Bank USSD",
+      "networkScope": "GTBank Ghana account holders",
+      "eligibility": "Registered GTBank mobile-banking customers",
+      "costNote": "Bank transaction fees apply where shown.",
+      "securityWarning": "This moves money. Never share your PIN or one-time codes with anyone.",
+      "tags": [
+        "bank",
+        "transfer",
+        "airtime",
+        "balance",
+        "gtbank"
+      ],
+      "sourceUrl": "https://www.gtbghana.com/",
+      "sourceTitle": "GTBank Ghana",
+      "sourcePublisher": "Guaranty Trust Bank Ghana",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "gh-ecobank-ussd",
+      "name": "Ecobank mobile banking (*326#)",
+      "description": "Ecobank Ghana mobile banking: transfers, airtime, bills, and account services. Widely published bank code; kept corroborated pending a bank-page check.",
+      "countryCode": "GH",
+      "provider": "Ecobank Ghana",
+      "category": "Finance and Payments",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*326#",
+      "instructions": [
+        "Dial *326#.",
+        "Follow the menu for transfers, airtime, bills, or account services."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "Bank USSD",
+      "networkScope": "Ecobank Ghana account holders",
+      "eligibility": "Registered Ecobank mobile-banking customers",
+      "costNote": "Bank transaction fees apply where shown.",
+      "securityWarning": "This moves money. Never share your PIN or one-time codes with anyone.",
+      "tags": [
+        "bank",
+        "transfer",
+        "airtime",
+        "balance",
+        "ecobank"
+      ],
+      "sourceUrl": "https://www.ecobank.com/",
+      "sourceTitle": "Ecobank",
+      "sourcePublisher": "Ecobank Ghana",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "gh-waec-results",
+      "name": "WAEC results checker (Ghana)",
+      "description": "Check WASSCE results via the WAEC results service. Result-checker PINs are sold by WAEC; the code opens the results flow. Kept corroborated pending a WAEC-page check.",
+      "countryCode": "GH",
+      "provider": "West African Examinations Council",
+      "category": "Education",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*944#",
+      "instructions": [
+        "Dial *944#.",
+        "Follow the prompts and enter your result-checker details when asked."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "Results",
+      "networkScope": "Ghana WASSCE candidates",
+      "eligibility": "Candidates with a valid WAEC result-checker PIN",
+      "costNote": "Result-checker PIN purchase and any session charges apply.",
+      "securityWarning": "Use only your own examination details.",
+      "tags": [
+        "waec",
+        "results",
+        "wassce",
+        "school",
+        "exam"
+      ],
+      "sourceUrl": "https://www.waecgh.org/",
+      "sourceTitle": "WAEC Ghana",
+      "sourcePublisher": "WAEC Ghana",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
     }
   ],
-  "notice": "Each verified entry records the operator or operator help-desk page used for the last check. USSD menus can change by SIM, plan, device, or date; re-check with the operator if a code no longer matches."
+  "notice": "Each entry records the source page used for the last check. Corroborated codes are widely published but still awaiting an operator-page check; re-check with the operator if a code no longer matches. USSD menus can change by SIM, plan, device, or date."
 }

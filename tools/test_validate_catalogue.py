@@ -16,7 +16,7 @@ def make_entry(**overrides):
         "description": "Sample service",
         "countryCode": "GH",
         "provider": "Example",
-        "category": "Account & balance",
+        "category": "Telecom",
         "serviceType": "ussd",
         "dialString": "*123#",
         "instructions": ["Dial *123#."],
@@ -28,7 +28,7 @@ def make_entry(**overrides):
 
 class CatalogueValidatorTests(unittest.TestCase):
     def test_current_development_scaffold_passes(self):
-        self.assertEqual(validator.validate_catalogue(), 10)
+        self.assertEqual(validator.validate_catalogue(), 38)
 
     def test_verified_entry_requires_https_source_and_date(self):
         entry = make_entry(verificationStatus="verified")

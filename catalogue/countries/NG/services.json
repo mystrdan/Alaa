@@ -4,119 +4,583 @@
     {
       "id": "ng-airtel-data-balance",
       "name": "Check data balance",
-      "description": "Check your remaining Airtel Nigeria data balance; *323# also shows your data expiry date.",
+      "description": "Check your remaining Airtel Nigeria data balance; *323# also shows your data expiry date. Confirmed on the official Airtel Nigeria FAQ page.",
       "countryCode": "NG",
       "provider": "Airtel",
-      "category": "Data & airtime",
+      "category": "Telecom",
       "serviceType": "ussd",
+      "serviceStatus": "active",
       "dialString": "*323#",
-      "networkScope": "Airtel Nigeria SIMs",
       "instructions": [
         "Dial *323#.",
         "Your data balance (and expiry date) is displayed."
       ],
+      "verificationStatus": "verified",
+      "subcategory": "Balance enquiry",
+      "networkScope": "Airtel Nigeria SIMs",
       "costNote": "Standard USSD session charges may apply.",
+      "tags": [
+        "data",
+        "balance",
+        "check balance",
+        "expiry"
+      ],
       "sourceUrl": "https://www.airtel.com.ng/ng/personal/faq",
+      "sourceTitle": "Airtel Nigeria FAQ",
+      "sourcePublisher": "Airtel Nigeria",
+      "lastCheckedAt": "2026-10-11",
       "verifiedAt": "2026-10-11",
-      "verificationStatus": "verified"
+      "version": 1
     },
     {
       "id": "ng-airtel-data-bundles",
       "name": "View data bundles",
-      "description": "View all data bundles available on the Airtel Nigeria network.",
+      "description": "View all data bundles available on the Airtel Nigeria network. Confirmed on the official Airtel Nigeria FAQ page.",
       "countryCode": "NG",
       "provider": "Airtel",
-      "category": "Data & airtime",
+      "category": "Telecom",
       "serviceType": "ussd",
+      "serviceStatus": "active",
       "dialString": "*312#",
-      "networkScope": "Airtel Nigeria SIMs",
       "instructions": [
         "Dial *312#.",
         "Follow the menu to view and buy a data bundle."
       ],
+      "verificationStatus": "verified",
+      "subcategory": "Data bundles",
+      "networkScope": "Airtel Nigeria SIMs",
       "costNote": "Bundle prices vary by plan. Standard USSD session charges may apply.",
+      "tags": [
+        "data",
+        "buy data",
+        "bundle",
+        "internet"
+      ],
       "sourceUrl": "https://www.airtel.com.ng/ng/personal/faq",
+      "sourceTitle": "Airtel Nigeria FAQ",
+      "sourcePublisher": "Airtel Nigeria",
+      "lastCheckedAt": "2026-10-11",
       "verifiedAt": "2026-10-11",
-      "verificationStatus": "verified"
+      "version": 1
     },
     {
       "id": "ng-airtel-borrow-airtime",
       "name": "Borrow airtime",
-      "description": "Borrow airtime from Airtel Nigeria when you run out, repaid on your next recharge.",
+      "description": "Borrow airtime from Airtel Nigeria when you run out, repaid on your next recharge. Confirmed on the official Airtel Nigeria FAQ page.",
       "countryCode": "NG",
       "provider": "Airtel",
-      "category": "Account & balance",
+      "category": "Telecom",
       "serviceType": "ussd",
+      "serviceStatus": "active",
       "dialString": "*303#",
-      "networkScope": "Eligible Airtel Nigeria SIMs only; eligibility is decided by Airtel",
       "instructions": [
         "Dial *303#.",
         "Follow the menu options to select your preferred loan amount."
       ],
+      "verificationStatus": "verified",
+      "subcategory": "Airtime advance",
+      "networkScope": "Eligible Airtel Nigeria SIMs only",
+      "eligibility": "Eligibility is decided by Airtel",
       "costNote": "Service fees apply and are shown during the session.",
+      "securityWarning": "This creates a debt on your line repaid from your next recharge.",
+      "tags": [
+        "borrow",
+        "airtime",
+        "loan"
+      ],
       "sourceUrl": "https://www.airtel.com.ng/ng/personal/faq",
+      "sourceTitle": "Airtel Nigeria FAQ",
+      "sourcePublisher": "Airtel Nigeria",
+      "lastCheckedAt": "2026-10-11",
       "verifiedAt": "2026-10-11",
-      "verificationStatus": "verified"
+      "version": 1
     },
     {
       "id": "ng-airtel-airtime-transfer",
       "name": "Transfer airtime",
-      "description": "Transfer airtime to another Airtel Nigeria number.",
+      "description": "Transfer airtime to another Airtel Nigeria number. Confirmed on the official Airtel Nigeria FAQ page.",
       "countryCode": "NG",
       "provider": "Airtel",
-      "category": "Account & balance",
+      "category": "Telecom",
       "serviceType": "ussd",
+      "serviceStatus": "active",
       "dialString": "*321#",
-      "networkScope": "Airtel Nigeria to Airtel Nigeria only",
       "instructions": [
         "Dial *321#.",
         "Follow the menu to transfer airtime to another Airtel number."
       ],
+      "verificationStatus": "verified",
+      "subcategory": "Airtime transfer",
+      "networkScope": "Airtel Nigeria to Airtel Nigeria only",
       "costNote": "Transfer limits and fees are set by Airtel.",
+      "securityWarning": "Double-check the recipient number before confirming.",
+      "tags": [
+        "transfer",
+        "airtime"
+      ],
       "sourceUrl": "https://www.airtel.com.ng/ng/personal/faq",
+      "sourceTitle": "Airtel Nigeria FAQ",
+      "sourcePublisher": "Airtel Nigeria",
+      "lastCheckedAt": "2026-10-11",
       "verifiedAt": "2026-10-11",
-      "verificationStatus": "verified"
+      "version": 1
     },
     {
       "id": "ng-airtel-recharge-from-bank",
       "name": "Recharge airtime or data from your bank",
-      "description": "Buy Airtel Nigeria airtime or data directly from a linked bank account or debit card.",
+      "description": "Buy Airtel Nigeria airtime or data directly from a linked bank account or debit card. Confirmed on the official Airtel dial-444 page.",
       "countryCode": "NG",
       "provider": "Airtel",
-      "category": "Data & airtime",
+      "category": "Telecom",
       "serviceType": "ussd",
+      "serviceStatus": "active",
       "dialString": "*444#",
-      "networkScope": "Airtel Nigeria lines linked to a bank account or with a debit card",
       "instructions": [
         "Dial *444# (or *444*AMOUNT# for quick recharge).",
         "Select the service you want: recharge for self or buy data bundles.",
         "Choose payment through your bank or a debit card."
       ],
+      "verificationStatus": "verified",
+      "subcategory": "Recharge",
+      "networkScope": "Airtel Nigeria lines linked to a bank account or with a debit card",
       "costNote": "Airtel states *444# is free to use; bundle and airtime prices still apply.",
+      "tags": [
+        "recharge",
+        "airtime",
+        "data",
+        "bank"
+      ],
       "sourceUrl": "https://www.airtel.com.ng/ng/personal/dial_444",
+      "sourceTitle": "Airtel dial 444",
+      "sourcePublisher": "Airtel Nigeria",
+      "lastCheckedAt": "2026-10-11",
       "verifiedAt": "2026-10-11",
-      "verificationStatus": "verified"
+      "version": 1
     },
     {
       "id": "ng-airtel-tariff-plan",
       "name": "Check my tariff plan",
-      "description": "See which Airtel Nigeria tariff plan your line is on.",
+      "description": "See which Airtel Nigeria tariff plan your line is on. Confirmed on the official Airtel Nigeria FAQ page.",
       "countryCode": "NG",
       "provider": "Airtel",
-      "category": "SIM & network",
+      "category": "Telecom",
       "serviceType": "ussd",
+      "serviceStatus": "active",
       "dialString": "*121#",
-      "networkScope": "Airtel Nigeria SIMs",
       "instructions": [
         "Dial *121#.",
         "Select 'Manage my account'.",
         "Select 'My tariff plan'."
       ],
+      "verificationStatus": "verified",
+      "subcategory": "SIM services",
+      "networkScope": "Airtel Nigeria SIMs",
       "costNote": "Standard USSD session charges may apply.",
+      "tags": [
+        "tariff",
+        "plan",
+        "sim"
+      ],
       "sourceUrl": "https://www.airtel.com.ng/ng/personal/faq",
+      "sourceTitle": "Airtel Nigeria FAQ",
+      "sourcePublisher": "Airtel Nigeria",
+      "lastCheckedAt": "2026-10-11",
       "verifiedAt": "2026-10-11",
-      "verificationStatus": "verified"
+      "version": 1
+    },
+    {
+      "id": "ng-mtn-balance",
+      "name": "Check MTN balance",
+      "description": "Check your MTN Nigeria airtime and data balance from the account menu. Widely published code; kept corroborated pending an operator-page check.",
+      "countryCode": "NG",
+      "provider": "MTN",
+      "category": "Telecom",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*556#",
+      "instructions": [
+        "Dial *556#.",
+        "Your balance is shown on screen."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "Balance enquiry",
+      "networkScope": "MTN Nigeria SIMs",
+      "costNote": "Standard USSD session charges may apply.",
+      "tags": [
+        "balance",
+        "check balance",
+        "airtime"
+      ],
+      "sourceUrl": "https://www.mtn.ng/",
+      "sourceTitle": "MTN Nigeria",
+      "sourcePublisher": "MTN Nigeria",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "ng-mtn-my-number",
+      "name": "Check my MTN number",
+      "description": "Display your own MTN Nigeria phone number on screen. Widely published code; kept corroborated pending an operator-page check.",
+      "countryCode": "NG",
+      "provider": "MTN",
+      "category": "Telecom",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*123#",
+      "instructions": [
+        "Dial *123#.",
+        "Choose the option to check your number from the menu."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "SIM services",
+      "networkScope": "MTN Nigeria SIMs",
+      "costNote": "Standard USSD session charges may apply.",
+      "tags": [
+        "my number",
+        "check number",
+        "sim"
+      ],
+      "sourceUrl": "https://www.mtn.ng/",
+      "sourceTitle": "MTN Nigeria",
+      "sourcePublisher": "MTN Nigeria",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "ng-mtn-data-bundles",
+      "name": "Buy MTN data bundles",
+      "description": "Buy an MTN Nigeria data bundle from the data menu. Confirmed on the official MTN Nigeria data help page alongside *904#.",
+      "countryCode": "NG",
+      "provider": "MTN",
+      "category": "Telecom",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*312*1#",
+      "instructions": [
+        "Dial *312*1#.",
+        "Choose a bundle and confirm the purchase."
+      ],
+      "verificationStatus": "verified",
+      "subcategory": "Data bundles",
+      "networkScope": "MTN Nigeria prepaid SIMs",
+      "costNote": "Bundle prices vary by plan. Standard USSD session charges may apply.",
+      "tags": [
+        "data",
+        "buy data",
+        "bundle",
+        "internet"
+      ],
+      "sourceUrl": "https://www.mtn.ng/helppersonal/data/",
+      "sourceTitle": "MTN Nigeria data help",
+      "sourcePublisher": "MTN Nigeria",
+      "lastCheckedAt": "2026-10-11",
+      "verifiedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "ng-mtn-momo-menu",
+      "name": "MTN MoMo menu (Nigeria)",
+      "description": "Open the MTN Nigeria Mobile Money menu for transfers, airtime, and payments. Widely published code; kept corroborated pending an operator-page check.",
+      "countryCode": "NG",
+      "provider": "MTN",
+      "category": "Finance and Payments",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*671#",
+      "instructions": [
+        "Dial *671#.",
+        "Follow the menu for transfers, airtime, or payments."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "Mobile money",
+      "networkScope": "MTN MoMo users in Nigeria",
+      "eligibility": "Registered MTN MoMo wallet holders",
+      "costNote": "Transaction fees apply per MoMo tariff.",
+      "securityWarning": "This starts financial transactions. Never share your PIN or one-time codes with anyone.",
+      "tags": [
+        "momo",
+        "mobile money",
+        "transfer",
+        "send money"
+      ],
+      "sourceUrl": "https://www.mtn.ng/",
+      "sourceTitle": "MTN Nigeria",
+      "sourcePublisher": "MTN Nigeria",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "ng-glo-balance",
+      "name": "Check Glo balance",
+      "description": "Check your Glo Nigeria airtime and data balance. Widely published code; kept corroborated pending an operator-page check.",
+      "countryCode": "NG",
+      "provider": "Glo",
+      "category": "Telecom",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*127*0#",
+      "instructions": [
+        "Dial *127*0#.",
+        "Your balance is shown on screen."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "Balance enquiry",
+      "networkScope": "Glo Nigeria SIMs",
+      "costNote": "Standard USSD session charges may apply.",
+      "tags": [
+        "balance",
+        "check balance",
+        "airtime"
+      ],
+      "sourceUrl": "https://www.gloworld.com/",
+      "sourceTitle": "Glo Nigeria",
+      "sourcePublisher": "Glo",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "ng-glo-data",
+      "name": "Buy Glo data",
+      "description": "Buy a Glo Nigeria data bundle from the data menu. Widely published code; kept corroborated pending an operator-page check.",
+      "countryCode": "NG",
+      "provider": "Glo",
+      "category": "Telecom",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*777#",
+      "instructions": [
+        "Dial *777#.",
+        "Choose a bundle and confirm the purchase."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "Data bundles",
+      "networkScope": "Glo Nigeria prepaid SIMs",
+      "costNote": "Bundle prices vary by plan. Standard USSD session charges may apply.",
+      "tags": [
+        "data",
+        "buy data",
+        "bundle",
+        "internet"
+      ],
+      "sourceUrl": "https://www.gloworld.com/",
+      "sourceTitle": "Glo Nigeria",
+      "sourcePublisher": "Glo",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "ng-glo-my-number",
+      "name": "Check my Glo number",
+      "description": "Display your own Glo Nigeria phone number on screen. Widely published code; kept corroborated pending an operator-page check.",
+      "countryCode": "NG",
+      "provider": "Glo",
+      "category": "Telecom",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*135*8#",
+      "instructions": [
+        "Dial *135*8#.",
+        "Your number is shown on screen."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "SIM services",
+      "networkScope": "Glo Nigeria SIMs",
+      "costNote": "Standard USSD session charges may apply.",
+      "tags": [
+        "my number",
+        "check number",
+        "sim"
+      ],
+      "sourceUrl": "https://www.gloworld.com/",
+      "sourceTitle": "Glo Nigeria",
+      "sourcePublisher": "Glo",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "ng-9mobile-balance",
+      "name": "Check 9mobile balance",
+      "description": "Check your 9mobile Nigeria airtime and data balance. Widely published code; kept corroborated pending an operator-page check.",
+      "countryCode": "NG",
+      "provider": "9mobile",
+      "category": "Telecom",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*232#",
+      "instructions": [
+        "Dial *232#.",
+        "Your balance is shown on screen."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "Balance enquiry",
+      "networkScope": "9mobile Nigeria SIMs",
+      "costNote": "Standard USSD session charges may apply.",
+      "tags": [
+        "balance",
+        "check balance",
+        "airtime"
+      ],
+      "sourceUrl": "https://www.9mobile.com.ng/",
+      "sourceTitle": "9mobile Nigeria",
+      "sourcePublisher": "9mobile",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "ng-9mobile-data",
+      "name": "Buy 9mobile data",
+      "description": "Buy a 9mobile Nigeria data bundle from the data menu. Widely published code; kept corroborated pending an operator-page check.",
+      "countryCode": "NG",
+      "provider": "9mobile",
+      "category": "Telecom",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*229#",
+      "instructions": [
+        "Dial *229#.",
+        "Choose a bundle and confirm the purchase."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "Data bundles",
+      "networkScope": "9mobile Nigeria prepaid SIMs",
+      "costNote": "Bundle prices vary by plan. Standard USSD session charges may apply.",
+      "tags": [
+        "data",
+        "buy data",
+        "bundle",
+        "internet"
+      ],
+      "sourceUrl": "https://www.9mobile.com.ng/",
+      "sourceTitle": "9mobile Nigeria",
+      "sourcePublisher": "9mobile",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "ng-9mobile-my-number",
+      "name": "Check my 9mobile number",
+      "description": "Display your own 9mobile Nigeria phone number on screen. Widely published code; kept corroborated pending an operator-page check.",
+      "countryCode": "NG",
+      "provider": "9mobile",
+      "category": "Telecom",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*248#",
+      "instructions": [
+        "Dial *248#.",
+        "Your number is shown on screen."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "SIM services",
+      "networkScope": "9mobile Nigeria SIMs",
+      "costNote": "Standard USSD session charges may apply.",
+      "tags": [
+        "my number",
+        "check number",
+        "sim"
+      ],
+      "sourceUrl": "https://www.9mobile.com.ng/",
+      "sourceTitle": "9mobile Nigeria",
+      "sourcePublisher": "9mobile",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "ng-gtb-737",
+      "name": "GTBank mobile banking (*737#)",
+      "description": "GTBank Nigeria mobile banking: transfers, airtime top-up, balance checks, and bill payments. Widely published bank code; kept corroborated because the bank page was bot-blocked at last check.",
+      "countryCode": "NG",
+      "provider": "Guaranty Trust Bank",
+      "category": "Finance and Payments",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*737#",
+      "instructions": [
+        "Dial *737#.",
+        "Follow the menu for transfers, airtime, balance, or bills."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "Bank USSD",
+      "networkScope": "GTBank Nigeria account holders",
+      "eligibility": "Registered GTBank mobile-banking customers",
+      "costNote": "Bank transaction fees apply where shown.",
+      "securityWarning": "This moves money. Never share your PIN or one-time codes with anyone.",
+      "tags": [
+        "bank",
+        "transfer",
+        "airtime",
+        "balance",
+        "gtbank"
+      ],
+      "sourceUrl": "https://www.gtbank.com/",
+      "sourceTitle": "GTBank",
+      "sourcePublisher": "Guaranty Trust Bank",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "ng-uba-magic",
+      "name": "UBA mobile banking (*919#)",
+      "description": "UBA Nigeria mobile banking: transfers, airtime, bills, and account services. Widely published bank code; kept corroborated pending a bank-page check.",
+      "countryCode": "NG",
+      "provider": "United Bank for Africa",
+      "category": "Finance and Payments",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*919#",
+      "instructions": [
+        "Dial *919#.",
+        "Follow the menu for transfers, airtime, bills, or account services."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "Bank USSD",
+      "networkScope": "UBA Nigeria account holders",
+      "eligibility": "Registered UBA mobile-banking customers",
+      "costNote": "Bank transaction fees apply where shown.",
+      "securityWarning": "This moves money. Never share your PIN or one-time codes with anyone.",
+      "tags": [
+        "bank",
+        "transfer",
+        "airtime",
+        "balance",
+        "uba"
+      ],
+      "sourceUrl": "https://www.ubagroup.com/",
+      "sourceTitle": "UBA Group",
+      "sourcePublisher": "United Bank for Africa",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
+    },
+    {
+      "id": "ng-nin-services",
+      "name": "NIN services (retrieve/link)",
+      "description": "Retrieve your National Identification Number or use NIMC self-service options. Widely published codes; kept corroborated because the NIMC page required JavaScript at last check.",
+      "countryCode": "NG",
+      "provider": "National Identity Management Commission",
+      "category": "Government",
+      "serviceType": "ussd",
+      "serviceStatus": "active",
+      "dialString": "*346#",
+      "instructions": [
+        "Dial *346# to retrieve your NIN on the registered line.",
+        "Follow NIMC guidance (e.g. *996# options) to link or manage NIN services."
+      ],
+      "verificationStatus": "corroborated",
+      "subcategory": "Identity",
+      "networkScope": "Any Nigerian mobile line; retrieval works on the NIN-registered line",
+      "costNote": "NIMC notes a small service fee may apply for NIN retrieval.",
+      "securityWarning": "Your NIN is sensitive identity data; only use official NIMC flows.",
+      "tags": [
+        "nin",
+        "identity",
+        "government"
+      ],
+      "sourceUrl": "https://nimc.gov.ng/",
+      "sourceTitle": "NIMC",
+      "sourcePublisher": "National Identity Management Commission",
+      "lastCheckedAt": "2026-10-11",
+      "version": 1
     }
   ],
-  "notice": "Each verified entry records the operator page used for the last check. MTN Nigeria, Glo, and 9mobile are not yet covered: their official pages were unreachable during the last research pass. USSD menus can change by SIM, plan, device, or date; re-check with the operator if a code no longer matches."
+  "notice": "Each entry records the source page used for the last check. Corroborated codes are widely published but still awaiting an operator-page check; re-check with the operator if a code no longer matches. USSD menus can change by SIM, plan, device, or date."
 }

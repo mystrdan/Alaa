@@ -17,13 +17,20 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[1]
 CATALOGUE = ROOT / "catalogue"
 COUNTRIES = {"GH", "NG"}
-STATUSES = {"draft", "verified", "stale", "disputed", "retired"}
+STATUSES = {"draft", "verified", "corroborated", "unverified", "historical",
+            "stale", "disputed", "retired"}
 SERVICE_TYPES = {"ussd", "sms_short_code", "phone_number", "web_link"}
-CATEGORIES = {"Data & airtime", "Account & balance", "Mobile money",
-              "Banking", "SIM & network", "Customer care"}
+SERVICE_STATUSES = {"active", "temporary", "seasonal", "historical",
+                    "discontinued", "unknown"}
+CATEGORIES = {"Telecom", "Government", "Education", "Finance and Payments",
+              "Health", "Utilities", "Transport", "Agriculture",
+              "Insurance and Pensions", "Commerce", "Other Services"}
 ENTRY_KEYS = {"id", "name", "description", "countryCode", "provider", "category",
-              "serviceType", "dialString", "instructions", "verificationStatus",
-              "networkScope", "costNote", "sourceUrl", "verifiedAt", "version"}
+              "subcategory", "serviceType", "serviceStatus", "dialString",
+              "instructions", "networkScope", "eligibility", "costNote",
+              "securityWarning", "tags", "sourceUrl", "sourceTitle",
+              "sourcePublisher", "verifiedAt", "lastCheckedAt",
+              "verificationStatus", "version"}
 ID_PATTERN = re.compile(r"^[a-z0-9][a-z0-9-]{2,63}$")
 REQUIRED = {"id", "name", "description", "countryCode", "provider", "category",
             "serviceType", "dialString", "instructions", "verificationStatus"}
@@ -60,6 +67,15 @@ def validate_entry(entry, expected_country, seen_ids, today=None):
         raise CatalogueError(f"{entry['id']}: unsupported category")
     if entry["serviceType"] not in SERVICE_TYPES:
         raise CatalogueError(f"{entry['id']}: unsupported serviceType")
+    service_status = entry.get("serviceStatus", "unknown")
+    if service_status not in SERVICE_STATUSES:
+        raise CatalogueError(f"{entry['id']}: unsupported serviceStatus")
+    if service_status in {"historical", "discontinued"} and entry["verificationStatus"] == "verified":
+        raise CatalogueError(f"{entry['id']}: {service_status} services cannot be marked verified")
+    for list_field in ("instructions", "tags"):
+        if list_field in entry and (not isinstance(entry[list_field], list)
+                                    or not all(isinstance(x, str) for x in entry[list_field])):
+            raise CatalogueError(f"{entry['id']}: {list_field} must be a list of strings")
     if entry["verificationStatus"] not in STATUSES:
         raise CatalogueError(f"{entry['id']}: unsupported verificationStatus")
     if not isinstance(entry["dialString"], str):

@@ -295,7 +295,7 @@ class _AlaaShellState extends State<AlaaShell> {
       );
 
   Widget _categories() {
-    const categories = <String, IconData>{'Data & airtime': Icons.wifi_rounded, 'Account & balance': Icons.account_balance_wallet_outlined, 'Mobile money': Icons.payments_outlined, 'Banking': Icons.account_balance_outlined, 'SIM & network': Icons.sim_card_outlined, 'Customer care': Icons.support_agent_rounded};
+    const categories = <String, IconData>{'Telecom': Icons.wifi_rounded, 'Government': Icons.account_balance_outlined, 'Education': Icons.school_outlined, 'Finance and Payments': Icons.payments_outlined, 'Health': Icons.health_and_safety_outlined, 'Utilities': Icons.bolt_outlined, 'Transport': Icons.directions_bus_outlined, 'Agriculture': Icons.agriculture_outlined, 'Insurance and Pensions': Icons.shield_outlined, 'Commerce': Icons.storefront_outlined, 'Other Services': Icons.grid_view_rounded};
     return ListView(padding: const EdgeInsets.all(20), children: [
       const Text('Browse categories', style: TextStyle(fontSize: 26, fontWeight: FontWeight.w800)),
       const SizedBox(height: 8),
@@ -407,7 +407,9 @@ class ServiceDetailPage extends StatelessWidget {
 
   String get _statusLabel => switch (entry.effectiveStatus) {
         VerificationStatus.verified => 'Verified against source',
+        VerificationStatus.corroborated => 'Corroborated by credible sources',
         VerificationStatus.stale => 'Last check is old — may have changed',
+        VerificationStatus.historical => 'Historical — may be discontinued',
         VerificationStatus.disputed => 'Reported as incorrect — under review',
         VerificationStatus.retired => 'Retired by the operator — do not use',
         VerificationStatus.unverified => 'Unverified — not confirmed by a source yet',
@@ -463,7 +465,7 @@ class ServiceDetailPage extends StatelessWidget {
             label: const Text('USSD code not verified'),
           ),
           const SizedBox(height: 6),
-          const Text('Only entries verified against an operator source can be opened in the dialer. Copy the code and double-check with your operator instead.', style: TextStyle(fontSize: 12, color: Colors.black54)),
+          const Text('This code is not available for dialling (historical, disputed, or retired). Copy the code and double-check with your operator instead.', style: TextStyle(fontSize: 12, color: Colors.black54)),
         ],
         if (entry.dialString.trim().isNotEmpty) ...[
           const SizedBox(height: 8),
@@ -559,7 +561,7 @@ class AboutPage extends StatelessWidget {
 class _UnverifiedNotice extends StatelessWidget {
   const _UnverifiedNotice();
   @override
-  Widget build(BuildContext context) => Container(padding: const EdgeInsets.all(12), decoration: BoxDecoration(color: const Color(0xFFFFF3D7), borderRadius: BorderRadius.circular(14)), child: const Row(crossAxisAlignment: CrossAxisAlignment.start, children: [Icon(Icons.info_outline_rounded, size: 18, color: Color(0xFF76520A)), SizedBox(width: 8), Expanded(child: Text('Unverified entries are clearly marked and cannot be opened in the dialer. Codes can change by SIM, plan, or date — check with your operator before relying on one.', style: TextStyle(fontSize: 12, color: Color(0xFF76520A))))]));
+  Widget build(BuildContext context) => Container(padding: const EdgeInsets.all(12), decoration: BoxDecoration(color: const Color(0xFFFFF3D7), borderRadius: BorderRadius.circular(14)), child: const Row(crossAxisAlignment: CrossAxisAlignment.start, children: [Icon(Icons.info_outline_rounded, size: 18, color: Color(0xFF76520A)), SizedBox(width: 8), Expanded(child: Text('Unverified and corroborated entries are clearly marked and can still be dialled. Codes can change by SIM, plan, or date — check with your operator before relying on one.', style: TextStyle(fontSize: 12, color: Color(0xFF76520A))))]));
 }
 
 class _Contribution {
@@ -627,12 +629,16 @@ String _statusLabel(String status) {
 }
 
 IconData _categoryIcon(String category) => switch (category) {
-      'Data & airtime' => Icons.wifi_rounded,
-      'Account & balance' => Icons.account_balance_wallet_outlined,
-      'Mobile money' => Icons.payments_outlined,
-      'Banking' => Icons.account_balance_outlined,
-      'SIM & network' => Icons.sim_card_outlined,
-      'Customer care' => Icons.support_agent_rounded,
+      'Telecom' => Icons.wifi_rounded,
+      'Government' => Icons.account_balance_outlined,
+      'Education' => Icons.school_outlined,
+      'Finance and Payments' => Icons.payments_outlined,
+      'Health' => Icons.health_and_safety_outlined,
+      'Utilities' => Icons.bolt_outlined,
+      'Transport' => Icons.directions_bus_outlined,
+      'Agriculture' => Icons.agriculture_outlined,
+      'Insurance and Pensions' => Icons.shield_outlined,
+      'Commerce' => Icons.storefront_outlined,
       _ => Icons.grid_view_rounded,
     };
 

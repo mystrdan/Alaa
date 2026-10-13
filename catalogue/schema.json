@@ -2,23 +2,169 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Alaa USSD catalogue entry",
   "type": "object",
-  "required": ["id", "name", "description", "countryCode", "provider", "category", "serviceType", "dialString", "instructions", "verificationStatus"],
+  "required": [
+    "id",
+    "name",
+    "description",
+    "countryCode",
+    "provider",
+    "category",
+    "serviceType",
+    "serviceStatus",
+    "dialString",
+    "instructions",
+    "verificationStatus"
+  ],
   "properties": {
-    "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{2,63}$"},
-    "name": {"type": "string", "minLength": 1},
-    "description": {"type": "string", "minLength": 1},
-    "countryCode": {"enum": ["GH", "NG"]},
-    "provider": {"type": "string", "minLength": 1},
-    "category": {"enum": ["Data & airtime", "Account & balance", "Mobile money", "Banking", "SIM & network", "Customer care"]},
-    "serviceType": {"enum": ["ussd", "sms_short_code", "phone_number", "web_link"]},
-    "dialString": {"type": "string"},
-    "networkScope": {"type": "string"},
-    "instructions": {"type": "array", "items": {"type": "string"}},
-    "costNote": {"type": ["string", "null"]},
-    "sourceUrl": {"type": ["string", "null"], "format": "uri"},
-    "verifiedAt": {"type": ["string", "null"], "format": "date"},
-    "verificationStatus": {"enum": ["draft", "verified", "stale", "disputed", "retired"]},
-    "version": {"type": "integer", "minimum": 1}
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{2,63}$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "countryCode": {
+      "enum": [
+        "GH",
+        "NG"
+      ]
+    },
+    "provider": {
+      "type": "string",
+      "minLength": 1
+    },
+    "category": {
+      "enum": [
+        "Telecom",
+        "Government",
+        "Education",
+        "Finance and Payments",
+        "Health",
+        "Utilities",
+        "Transport",
+        "Agriculture",
+        "Insurance and Pensions",
+        "Commerce",
+        "Other Services"
+      ]
+    },
+    "subcategory": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "serviceType": {
+      "enum": [
+        "ussd",
+        "sms_short_code",
+        "phone_number",
+        "web_link"
+      ]
+    },
+    "serviceStatus": {
+      "enum": [
+        "active",
+        "temporary",
+        "seasonal",
+        "historical",
+        "discontinued",
+        "unknown"
+      ]
+    },
+    "dialString": {
+      "type": "string"
+    },
+    "instructions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "networkScope": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "eligibility": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "costNote": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "securityWarning": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sourceUrl": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "sourceTitle": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sourcePublisher": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "verifiedAt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "lastCheckedAt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "verificationStatus": {
+      "enum": [
+        "draft",
+        "verified",
+        "corroborated",
+        "unverified",
+        "historical",
+        "stale",
+        "disputed",
+        "retired"
+      ]
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    }
   },
   "additionalProperties": false
 }

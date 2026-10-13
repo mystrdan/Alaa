@@ -78,11 +78,18 @@ UssdEntry _parseEntry(Object? raw, String expectedCountry, DateTime now) {
   }
   final status = switch (raw['verificationStatus']) {
     'verified' => VerificationStatus.verified,
+    'corroborated' => VerificationStatus.corroborated,
     'stale' => VerificationStatus.stale,
     'disputed' => VerificationStatus.disputed,
     'retired' => VerificationStatus.retired,
-    'draft' || _ => VerificationStatus.unverified,
+    'historical' => VerificationStatus.historical,
+    // 'draft' and any unknown value map to unverified: a lead, clearly
+    // labelled, never presented as confirmed.
+    _ => VerificationStatus.unverified,
   };
+  final serviceStatus =
+      ServiceStatus.tryParse(raw['serviceStatus'] as String?) ??
+          ServiceStatus.unknown;
   final instructions = <String>[];
   final rawInstructions = raw['instructions'];
   if (rawInstructions is List) {
@@ -107,6 +114,19 @@ UssdEntry _parseEntry(Object? raw, String expectedCountry, DateTime now) {
   if (dialString is! String) {
     throw const FormatException('dialString must be a string');
   }
+  String? optionalString(String key) {
+    final value = raw[key];
+    return value is String && value.trim().isNotEmpty ? value.trim() : null;
+  }
+
+  final tags = <String>[];
+  final rawTags = raw['tags'];
+  if (rawTags is List) {
+    for (final tag in rawTags) {
+      if (tag is String && tag.trim().isNotEmpty) tags.add(tag.trim());
+    }
+  }
+
   return UssdEntry(
     id: requiredString('id'),
     name: requiredString('name'),
@@ -114,17 +134,21 @@ UssdEntry _parseEntry(Object? raw, String expectedCountry, DateTime now) {
     countryCode: countryCode,
     provider: requiredString('provider'),
     category: requiredString('category'),
+    subcategory: optionalString('subcategory'),
     serviceType: serviceType,
+    serviceStatus: serviceStatus,
     dialString: dialString.trim(),
     instructions: instructions,
-    networkScope: raw['networkScope'] is String && (raw['networkScope'] as String).trim().isNotEmpty
-        ? (raw['networkScope'] as String).trim()
-        : null,
-    costNote: raw['costNote'] is String && (raw['costNote'] as String).trim().isNotEmpty
-        ? (raw['costNote'] as String).trim()
-        : null,
+    networkScope: optionalString('networkScope'),
+    eligibility: optionalString('eligibility'),
+    costNote: optionalString('costNote'),
+    securityWarning: optionalString('securityWarning'),
+    tags: tags,
     sourceUrl: raw['sourceUrl'] is String ? raw['sourceUrl'] as String : null,
+    sourceTitle: optionalString('sourceTitle'),
+    sourcePublisher: optionalString('sourcePublisher'),
     verifiedAt: verifiedAt,
+    lastCheckedAt: _parseDate(raw['lastCheckedAt']),
     status: status,
   );
 }

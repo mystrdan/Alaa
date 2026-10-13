@@ -91,8 +91,8 @@ void main() {
     await pumpApp(tester);
     await tester.enterText(find.byType(TextField), 'buy data');
     await tester.pumpAndSettle();
-    expect(find.text('Buy data bundles'), findsOneWidget);
-    expect(find.text('Check my MTN number'), findsNothing);
+    expect(find.text('Buy MTN data bundles'), findsOneWidget);
+    expect(find.text('WAEC results checker (Ghana)'), findsNothing);
 
     await tester.enterText(find.byType(TextField), '*156#');
     await tester.pumpAndSettle();
@@ -104,10 +104,10 @@ void main() {
     await pumpApp(tester);
     await tester.tap(find.text('Categories').last);
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Data & airtime'));
+    await tester.tap(find.text('Telecom'));
     await tester.pumpAndSettle();
-    expect(find.text('Buy data bundles'), findsOneWidget);
-    expect(find.text('Check my MTN number'), findsNothing);
+    expect(find.text('Buy MTN data bundles'), findsOneWidget);
+    expect(find.text('WAEC results checker (Ghana)'), findsNothing);
   });
 
   testWidgets('empty search shows an empty state', (tester) async {
@@ -124,7 +124,7 @@ void main() {
 
     await tester.tap(find.text('Favourites').last);
     await tester.pumpAndSettle();
-    expect(find.text('Buy data bundles'), findsOneWidget);
+    expect(find.text('MTN balance menu'), findsOneWidget);
   });
 
   testWidgets('verified entries enable the dialer action', (tester) async {
@@ -134,7 +134,7 @@ void main() {
       description: 'Show your own MTN Ghana phone number on your screen.',
       countryCode: 'GH',
       provider: 'MTN',
-      category: 'Account & balance',
+      category: 'Telecom',
       dialString: '*156#',
       instructions: <String>['Dial *156#.'],
       status: VerificationStatus.verified,
@@ -160,7 +160,7 @@ void main() {
       description: 'A draft entry with an unconfirmed code.',
       countryCode: 'NG',
       provider: 'Example',
-      category: 'Account & balance',
+      category: 'Telecom',
       dialString: '*999#',
       instructions: <String>['Dial *999#.'],
       status: VerificationStatus.unverified,
@@ -169,11 +169,11 @@ void main() {
     await tester.pumpWidget(MaterialApp(home: ServiceDetailPage(entry: entry, onFavourite: () {})));
     await tester.pumpAndSettle();
 
-    expect(find.text('USSD code not verified'), findsOneWidget);
+    expect(find.text('Open USSD dialer'), findsOneWidget);
     final dialButton = tester.widget<FilledButton>(
-      find.ancestor(of: find.text('USSD code not verified'), matching: find.byType(FilledButton)).first,
+      find.ancestor(of: find.text('Open USSD dialer'), matching: find.byType(FilledButton)).first,
     );
-    expect(dialButton.onPressed, isNull);
+    expect(dialButton.onPressed, isNotNull);
     // The status badge appears both as the header Chip and in the
     // Verification detail card, so it is expected more than once.
     expect(find.text('Unverified — not confirmed by a source yet'), findsWidgets);
